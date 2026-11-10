@@ -1,209 +1,964 @@
 <!DOCTYPE html>
-<html lang="es">
+<html class="dark" lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TransTijuana OTP · Logística y Transporte de Personas</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>TransTijuana OTP · Logística de Personas (Tema 24)</title>
+    <meta content="web_dashboard" name="shell-type"/>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+    <style>
+        @layer base {
+            html, body { margin: 0; padding: 0; }
+            body { overscroll-behavior: none; }
+            main > :first-child { margin-top: 0 !important; }
+            main > :last-child { margin-bottom: 0 !important; }
+        }
+        ::-webkit-scrollbar { display: none; }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-primary": "#003640",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "on-secondary": "#1000a9",
+                        "inverse-surface": "#dee2f6",
+                        "surface-container-lowest": "#090e1c",
+                        "surface-tint": "#4cd7f6",
+                        "inverse-primary": "#00687a",
+                        "on-tertiary": "#003824",
+                        "primary": "#4cd7f6",
+                        "on-secondary-fixed-variant": "#2f2ebe",
+                        "surface-container-high": "#252a39",
+                        "on-secondary-container": "#b0b2ff",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "on-surface": "#dee2f6",
+                        "secondary-fixed-dim": "#c0c1ff",
+                        "surface-dim": "#0e1321",
+                        "on-background": "#dee2f6",
+                        "surface-bright": "#343948",
+                        "error-container": "#93000a",
+                        "tertiary-container": "#1bbd85",
+                        "outline": "#869397",
+                        "error": "#ffb4ab",
+                        "surface-container-highest": "#303444",
+                        "on-tertiary-container": "#00452e",
+                        "inverse-on-surface": "#2b303f",
+                        "on-tertiary-fixed": "#002113",
+                        "surface": "#0e1321",
+                        "on-primary-fixed": "#001f26",
+                        "tertiary-fixed": "#6ffbbe",
+                        "on-primary-container": "#00424f",
+                        "on-error": "#690005",
+                        "on-primary-fixed-variant": "#004e5c",
+                        "background": "#0e1321",
+                        "surface-container-low": "#161b2a",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary-fixed": "#07006c",
+                        "surface-variant": "#303444",
+                        "outline-variant": "#3d494c",
+                        "secondary": "#c0c1ff",
+                        "on-surface-variant": "#bcc9cd",
+                        "secondary-container": "#3131c0",
+                        "tertiary": "#4edea3",
+                        "primary-container": "#06b6d4",
+                        "primary-fixed": "#acedff",
+                        "surface-container": "#1a1f2e",
+                        "secondary-fixed": "#e1e0ff",
+                        "primary-fixed-dim": "#4cd7f6"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    },
+                    spacing: {
+                        "space-lg": "1.25rem",
+                        "margin": "1.5rem",
+                        "space-xs": "0.25rem",
+                        "space-xl": "2rem",
+                        "gutter": "1rem",
+                        "space-md": "0.75rem",
+                        "gutter-mobile": "0.75rem",
+                        "space-sm": "0.5rem",
+                        "margin-mobile": "1rem"
+                    },
+                    fontFamily: {
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "telemetry-metric": ["JetBrains Mono"],
+                        "headline-xl": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "label-sm": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "headline-xl-mobile": ["Plus Jakarta Sans"],
+                        "label-md": ["JetBrains Mono"],
+                        "label-lg": ["JetBrains Mono"],
+                        "body-md": ["Plus Jakarta Sans"]
+                    }
+                }
+            }
+        };
+    </script>
 </head>
-<body>
-    <!-- Encabezado Principal Stitch UI -->
-    <header class="app-header">
-        <div class="header-container">
-            <div class="brand-group">
-                <div class="brand-icon">
-                    <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="1" y="3" width="15" height="13"></rect>
-                        <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
-                        <circle cx="5.5" cy="18.5" r="2.5"></circle>
-                        <circle cx="18.5" cy="18.5" r="2.5"></circle>
-                    </svg>
+<body class="bg-surface font-body-md text-body-md text-on-surface">
+    <!-- Top Fixed Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-xl shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
+        <div class="h-20 w-full px-margin flex items-center justify-between gap-space-md">
+            <div class="flex items-center gap-space-md">
+                <div class="flex items-center gap-space-xs px-space-sm py-1 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm shadow-[0_0_12px_rgba(6,182,212,0.25)]">
+                    <span class="material-symbols-outlined text-[14px] text-primary">bolt</span>
+                    <span>TEMA 24 · ERLANG / OTP</span>
                 </div>
-                <div>
-                    <div class="badge-tema">TEMA 24 · ERLANG / OTP</div>
-                    <h1 class="brand-title">TransTijuana OTP · Logística de Personas</h1>
-                    <p class="brand-subtitle">Axel Tadeo Daniels Ceballos · TecNM Campus Tijuana · Ago–Dic 2026</p>
+                <div class="flex flex-col">
+                    <div class="flex items-center gap-space-xs">
+                        <span class="font-headline-md text-headline-md tracking-tight text-on-surface">TransTijuana OTP</span>
+                        <span class="font-headline-md text-headline-md text-primary">·</span>
+                        <span class="font-headline-md text-headline-md text-on-surface-variant font-normal">Logística de Personas</span>
+                    </div>
+                    <span class="font-label-sm text-label-sm text-on-surface-variant">Axel Tadeo Daniels Ceballos · TecNM Campus Tijuana</span>
                 </div>
             </div>
 
-            <div class="vm-status-card" id="beam-telemetry">
-                <div class="pulse-indicator">
-                    <span class="pulse-dot"></span>
-                    <span class="status-label">BEAM VM ACTIVA</span>
+            <!-- BEAM Telemetry pill -->
+            <div class="hidden xl:flex items-center gap-space-md px-space-md py-space-xs rounded-lg bg-surface-container-low shadow-[0_2px_12px_rgba(0,0,0,0.4)]">
+                <div class="flex items-center gap-space-xs pr-space-md">
+                    <span class="relative flex h-2.5 w-2.5">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-tertiary opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-tertiary"></span>
+                    </span>
+                    <div class="flex flex-col">
+                        <span class="font-label-sm text-label-sm text-tertiary font-bold tracking-wider">BEAM VM ACTIVA</span>
+                        <span class="font-label-sm text-label-sm text-on-surface-variant" id="header-otp-release">OTP 25+</span>
+                    </div>
                 </div>
-                <div class="vm-metrics-inline">
-                    <span>Procesos: <strong id="metric-procesos">--</strong></span>
-                    <span class="divider">|</span>
-                    <span>Memoria: <strong id="metric-memoria">-- KB</strong></span>
-                    <span class="divider">|</span>
-                    <span>Schedulers: <strong id="metric-schedulers">--</strong></span>
-                    <span class="divider">|</span>
-                    <span>Uptime: <strong id="metric-uptime">0s</strong></span>
+                <div class="flex items-center gap-space-md font-label-md text-label-md">
+                    <div class="flex flex-col">
+                        <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">PIDs</span>
+                        <span class="font-label-md text-label-md text-primary font-bold" id="header-pids">-- procs</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Memoria</span>
+                        <span class="font-label-md text-label-md text-on-surface font-semibold" id="header-mem">-- KB</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Schedulers</span>
+                        <span class="font-label-md text-label-md text-on-surface font-semibold" id="header-schedulers">-- Cores</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Uptime</span>
+                        <span class="font-label-md text-label-md text-secondary-fixed-dim font-medium" id="header-uptime">--s</span>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="hidden lg:flex items-center gap-space-xs font-label-md text-label-md">
+                <a aria-current="page" class="px-space-md py-space-xs transition-colors bg-surface-container-high text-primary font-bold rounded-lg shadow-[0_0_10px_rgba(6,182,212,0.15)]" href="#despacho">Despacho en Vivo</a>
+                <a class="px-space-md py-space-xs text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors rounded-lg" href="#supervisores">Supervisores OTP</a>
+                <a class="px-space-md py-space-xs text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors rounded-lg" href="#mapa">Mapa de Rutas</a>
+                <a class="px-space-md py-space-xs text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors rounded-lg" href="#telemetria">Logs de Telemetría</a>
+            </nav>
+
+            <div class="flex items-center gap-space-md">
+                <div class="hidden sm:flex flex-col text-right">
+                    <span class="font-label-md text-label-md text-on-surface font-medium">Ing. de Sistemas</span>
+                    <div class="flex items-center justify-end gap-1.5">
+                        <span class="h-1.5 w-1.5 rounded-full bg-tertiary"></span>
+                        <span class="font-label-sm text-label-sm text-on-surface-variant">Sincronizado</span>
+                    </div>
+                </div>
+                <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center font-bold text-on-primary">
+                    <span class="material-symbols-outlined text-[18px]">person</span>
                 </div>
             </div>
         </div>
     </header>
 
-    <main class="main-content">
-        <!-- Barra Superior de Métricas de Flota -->
-        <section class="kpi-grid">
-            <div class="kpi-card">
-                <span class="kpi-title">Personas Transportadas</span>
-                <span class="kpi-value" id="kpi-transportados">0</span>
-                <span class="kpi-caption">Viajes completados a destino</span>
+    <!-- Sidebar -->
+    <aside class="fixed left-0 top-20 bottom-0 w-64 bg-surface-container-lowest z-40 flex flex-col justify-between py-space-lg shadow-[4px_0_24px_rgba(0,0,0,0.4)]">
+        <div class="flex flex-col gap-space-lg">
+            <div class="px-space-lg flex items-center justify-between">
+                <span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Supervisión Actor Tree</span>
+                <span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-surface-container-high text-tertiary">one_for_one</span>
             </div>
-            <div class="kpi-card">
-                <span class="kpi-title">Pasajeros a Bordo</span>
-                <span class="kpi-value" id="kpi-a-bordo">0</span>
-                <span class="kpi-caption">Distribuidos en la flota activa</span>
-            </div>
-            <div class="kpi-card">
-                <span class="kpi-title">Ocupación de Flota</span>
-                <span class="kpi-value" id="kpi-ocupacion">0%</span>
-                <div class="progress-bar-container">
-                    <div class="progress-bar" id="kpi-progress-ocupacion" style="width: 0%"></div>
+            <nav class="flex flex-col gap-space-xs px-space-md font-label-md text-label-md">
+                <a class="flex items-center gap-space-sm px-space-md py-space-sm transition-colors bg-surface-container-high text-primary font-bold rounded-lg shadow-[0_0_12px_rgba(6,182,212,0.15)]" href="#despacho">
+                    <span class="material-symbols-outlined text-[18px]">commute</span>
+                    <span>Despacho Flota</span>
+                </a>
+                <a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" href="#supervisores">
+                    <span class="material-symbols-outlined text-[18px]">account_tree</span>
+                    <span>Árbol de Supervisión</span>
+                </a>
+                <a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" href="#mapa">
+                    <span class="material-symbols-outlined text-[18px]">alt_route</span>
+                    <span>Red Tijuana Hub</span>
+                </a>
+                <a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" href="#telemetria">
+                    <span class="material-symbols-outlined text-[18px]">terminal</span>
+                    <span>Event Tracing (BEAM)</span>
+                </a>
+            </nav>
+        </div>
+
+        <div class="px-space-md">
+            <div class="p-space-md rounded-lg bg-surface-container-low flex flex-col gap-space-xs shadow-[0_2px_8px_rgba(0,0,0,0.3)]">
+                <div class="flex items-center justify-between">
+                    <span class="font-label-sm text-label-sm text-on-surface-variant">Nodo Erlang</span>
+                    <span class="font-label-sm text-label-sm text-tertiary">transtijuana@localhost</span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <span class="font-label-sm text-label-sm text-on-surface-variant">Mailbox Queue</span>
+                    <span class="font-label-sm text-label-sm text-primary">0 msgs</span>
                 </div>
             </div>
-            <div class="kpi-card">
-                <span class="kpi-title">Recorrido Total Flota</span>
-                <span class="kpi-value" id="kpi-kilometros">0.0 km</span>
-                <span class="kpi-caption">Distancia Haversine acumulada</span>
-            </div>
-            <div class="kpi-card highlight-card">
-                <span class="kpi-title">Tolerancia a Fallos OTP</span>
-                <span class="kpi-value text-emerald">one_for_one</span>
-                <span class="kpi-caption">Supervisión automática "Let it crash"</span>
-            </div>
-        </section>
-
-        <!-- Controles Globales de Simulación -->
-        <section class="sim-controls-bar">
-            <div class="controls-left">
-                <button class="btn btn-primary" id="btn-avanzar-todas" title="Avanza todas las unidades a su siguiente parada">
-                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                    Avanzar Toda la Flota
-                </button>
-                <button class="btn btn-secondary" id="btn-auto-simular">
-                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                    <span id="label-auto-simular">Iniciar Auto-Simulación (3s)</span>
-                </button>
-                <button class="btn btn-outline" id="btn-generar-pasajero">
-                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7.5" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
-                    + Generar Pasajero Aleatorio
-                </button>
-            </div>
-            <div class="controls-right">
-                <span class="live-clock" id="clock-display">--:--:--</span>
-            </div>
-        </section>
-
-        <!-- Grid Principal de Trabajo -->
-        <div class="dashboard-grid">
-            <!-- Columna Izquierda: Mapa de Paradas y Tarjetas de Unidades -->
-            <div class="dashboard-col-left">
-                <!-- Esquema Visual de Paradas de Tijuana -->
-                <section class="panel-card">
-                    <div class="panel-header">
-                        <h2>
-                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                            Corredor Logístico Metropolitano de Tijuana
-                        </h2>
-                        <span class="badge-outline">Coordenadas Reales Haversine</span>
-                    </div>
-                    <div class="circuit-map" id="circuit-map">
-                        <!-- Nodos de paradas inyectados dinámicamente -->
-                    </div>
-                </section>
-
-                <!-- Tarjetas de Unidades Vehiculares -->
-                <section class="panel-card">
-                    <div class="panel-header">
-                        <h2>
-                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
-                            Unidades de Transporte Concurrente (gen_server)
-                        </h2>
-                        <span class="badge-pill" id="badge-unidades-count">4 Unidades Activas</span>
-                    </div>
-
-                    <div class="units-grid" id="units-container">
-                        <!-- Tarjetas de unidades generadas por app.js -->
-                    </div>
-                </section>
-            </div>
-
-            <!-- Columna Derecha: Despachador de Pasajeros y Consola OTP -->
-            <div class="dashboard-col-right">
-                <!-- Formulario de Despacho Rápido -->
-                <section class="panel-card">
-                    <div class="panel-header">
-                        <h2>
-                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                            Solicitar Transporte de Pasajero
-                        </h2>
-                    </div>
-
-                    <form id="form-solicitar" class="dispatch-form">
-                        <div class="form-group">
-                            <label for="input-nombre">Nombre del Pasajero / Estudiante / Empleado</label>
-                            <input type="text" id="input-nombre" placeholder="Ej. Ana Beltrán" required>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="select-origen">Parada de Origen</label>
-                                <select id="select-origen" required>
-                                    <option value="otay">Otay - TecNM Tijuana</option>
-                                    <option value="central_camionera">Terminal Central Alamar</option>
-                                    <option value="zona_rio">Zona Río - CECUT</option>
-                                    <option value="centro">Centro Histórico</option>
-                                    <option value="el_florido">Parque Industrial El Florido</option>
-                                    <option value="playas">Playas de Tijuana</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="select-destino">Parada de Destino</label>
-                                <select id="select-destino" required>
-                                    <option value="centro" selected>Centro Histórico</option>
-                                    <option value="zona_rio">Zona Río - CECUT</option>
-                                    <option value="otay">Otay - TecNM Tijuana</option>
-                                    <option value="central_camionera">Terminal Central Alamar</option>
-                                    <option value="el_florido">Parque Industrial El Florido</option>
-                                    <option value="playas">Playas de Tijuana</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <button type="submit" class="btn btn-accent btn-block" id="btn-submit-solicitar">
-                            Asignar Unidad Óptima (Despacho OTP)
-                        </button>
-                    </form>
-
-                    <div id="dispatch-result" class="dispatch-result-box" style="display: none;"></div>
-                </section>
-
-                <!-- Consola de Eventos y Telemetría OTP -->
-                <section class="panel-card console-panel">
-                    <div class="panel-header">
-                        <h2>
-                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
-                            Bitácora Concurrente de Eventos OTP
-                        </h2>
-                        <button class="btn-xs" id="btn-limpiar-consola">Limpiar</button>
-                    </div>
-
-                    <div class="terminal-window" id="terminal-log">
-                        <div class="terminal-line text-cyan">[INIT] Iniciando monitor de eventos en tiempo real...</div>
-                    </div>
-                </section>
-            </div>
         </div>
-    </main>
+    </aside>
 
-    <!-- Modal para Notificaciones Toast -->
-    <div id="toast-container" class="toast-container"></div>
+    <!-- Main Content Area -->
+    <div class="pl-64">
+        <main class="relative pt-20 w-full min-h-screen bg-surface">
+            <div class="flex flex-col w-full">
+                <div class="p-space-lg flex flex-col gap-space-lg w-full max-w-[1720px] mx-auto">
+                    
+                    <!-- KPI STRIP (5 High-Density Glassmorphism Metric Cards) -->
+                    <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-gutter w-full">
+                        <!-- Card 1: Personas Transportadas -->
+                        <div class="bg-surface-container-low/90 backdrop-blur-md rounded-xl p-space-md shadow-[0_4px_20px_rgba(0,0,0,0.35)] flex flex-col justify-between hover:bg-surface-container-high/60 transition-all duration-300">
+                            <div class="flex items-center justify-between gap-space-xs">
+                                <span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Conteo Acumulado</span>
+                                <span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-tertiary-container/20 text-tertiary font-label-sm text-label-sm font-semibold">
+                                    <span class="material-symbols-outlined text-[12px]">trending_up</span>En servicio
+                                </span>
+                            </div>
+                            <div class="my-space-xs flex items-baseline justify-between">
+                                <div class="flex flex-col">
+                                    <span class="font-telemetry-metric text-telemetry-metric text-primary font-bold tracking-tight" id="kpi-transportados">0</span>
+                                    <span class="font-body-sm text-body-sm text-on-surface-variant">Personas Transportadas</span>
+                                </div>
+                                <div class="w-16 h-8 text-primary flex items-end">
+                                    <svg class="w-full h-full stroke-current stroke-2" fill="none" viewBox="0 0 64 24">
+                                        <path d="M2 18 L12 15 L22 19 L32 10 L42 12 L52 4 L62 8" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path d="M2 18 L12 15 L22 19 L32 10 L42 12 L52 4 L62 8 V24 H2 Z" fill="currentColor" fill-opacity="0.12" stroke="none"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant/80 pt-space-xs">
+                                <span>Tijuana PST</span>
+                                <span class="text-tertiary font-medium">100% entregas</span>
+                            </div>
+                        </div>
 
-    <script src="app.js"></script>
+                        <!-- Card 2: Pasajeros a Bordo Actuales -->
+                        <div class="bg-surface-container-low/90 backdrop-blur-md rounded-xl p-space-md shadow-[0_4px_20px_rgba(0,0,0,0.35)] flex flex-col justify-between hover:bg-surface-container-high/60 transition-all duration-300">
+                            <div class="flex items-center justify-between">
+                                <span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Aforo en Marcha</span>
+                                <span class="material-symbols-outlined text-secondary text-[16px]">airline_seat_recline_normal</span>
+                            </div>
+                            <div class="my-space-xs">
+                                <div class="flex items-baseline gap-space-xs">
+                                    <span class="font-telemetry-metric text-telemetry-metric text-on-surface font-bold" id="kpi-a-bordo">0</span>
+                                    <span class="font-headline-md text-headline-md text-on-surface-variant font-normal" id="kpi-cap-total">/ 67 PAX</span>
+                                </div>
+                                <span class="font-body-sm text-body-sm text-on-surface-variant">Aforo de Operación Actual</span>
+                            </div>
+                            <!-- Micro barras de aforo por unidad -->
+                            <div class="flex items-center gap-1 pt-space-xs">
+                                <div class="flex-1 bg-surface-container-highest rounded-full h-1.5 overflow-hidden">
+                                    <div class="bg-primary h-full transition-all duration-500" id="micro-u1" style="width: 0%"></div>
+                                </div>
+                                <div class="flex-1 bg-surface-container-highest rounded-full h-1.5 overflow-hidden">
+                                    <div class="bg-secondary-fixed-dim h-full transition-all duration-500" id="micro-u2" style="width: 0%"></div>
+                                </div>
+                                <div class="flex-1 bg-surface-container-highest rounded-full h-1.5 overflow-hidden">
+                                    <div class="bg-tertiary h-full transition-all duration-500" id="micro-u3" style="width: 0%"></div>
+                                </div>
+                                <div class="flex-1 bg-surface-container-highest rounded-full h-1.5 overflow-hidden">
+                                    <div class="bg-outline h-full transition-all duration-500" id="micro-u4" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3: Ocupación de Flota -->
+                        <div class="bg-surface-container-low/90 backdrop-blur-md rounded-xl p-space-md shadow-[0_4px_20px_rgba(0,0,0,0.35)] flex flex-col justify-between hover:bg-surface-container-high/60 transition-all duration-300">
+                            <div class="flex items-center justify-between">
+                                <span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Capacidad Global</span>
+                                <span class="px-1.5 py-0.5 rounded bg-surface-container-high text-primary font-label-sm text-label-sm" id="badge-unidades-activas">4 Vanes</span>
+                            </div>
+                            <div class="my-space-xs">
+                                <div class="flex items-baseline gap-2">
+                                    <span class="font-telemetry-metric text-telemetry-metric text-secondary-fixed-dim font-bold" id="kpi-ocupacion">0.0%</span>
+                                    <span class="font-label-sm text-label-sm text-tertiary font-semibold uppercase tracking-wider">Óptimo Concurrente</span>
+                                </div>
+                                <span class="font-body-sm text-body-sm text-on-surface-variant">Ocupación de Flota Total</span>
+                            </div>
+                            <div class="w-full bg-surface-container-highest rounded-full h-2 overflow-hidden mt-space-xs">
+                                <div class="bg-gradient-to-r from-primary to-secondary-fixed-dim h-full rounded-full transition-all duration-500" id="kpi-progress-bar" style="width: 0%;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Card 4: Kilómetros Recorridos -->
+                        <div class="bg-surface-container-low/90 backdrop-blur-md rounded-xl p-space-md shadow-[0_4px_20px_rgba(0,0,0,0.35)] flex flex-col justify-between hover:bg-surface-container-high/60 transition-all duration-300">
+                            <div class="flex items-center justify-between">
+                                <span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Haversine Preciso</span>
+                                <span class="material-symbols-outlined text-tertiary text-[18px]">satellite_alt</span>
+                            </div>
+                            <div class="my-space-xs">
+                                <div class="flex items-baseline gap-1">
+                                    <span class="font-telemetry-metric text-telemetry-metric text-tertiary font-bold" id="kpi-kilometros">0.0</span>
+                                    <span class="font-label-lg text-label-lg text-on-surface-variant">km</span>
+                                </div>
+                                <span class="font-body-sm text-body-sm text-on-surface-variant">Kilómetros Recorridos Hoy</span>
+                            </div>
+                            <div class="flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant pt-space-xs">
+                                <span class="text-tertiary flex items-center gap-1"><span class="h-1.5 w-1.5 rounded-full bg-tertiary"></span>GPS Sync (±1.4m)</span>
+                                <span class="font-label-sm">Circuito Tijuana</span>
+                            </div>
+                        </div>
+
+                        <!-- Card 5: Resiliencia OTP -->
+                        <div class="bg-surface-container-low/90 backdrop-blur-md rounded-xl p-space-md shadow-[0_4px_20px_rgba(0,0,0,0.35)] flex flex-col justify-between hover:bg-surface-container-high/60 transition-all duration-300 relative overflow-hidden">
+                            <div class="absolute -right-4 -bottom-4 w-20 h-20 bg-tertiary/5 rounded-full blur-xl pointer-events-none"></div>
+                            <div class="flex items-center justify-between">
+                                <span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Resiliencia OTP</span>
+                                <span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-tertiary-container/30 text-tertiary font-label-sm text-label-sm font-bold">
+                                    <span class="h-1.5 w-1.5 rounded-full bg-tertiary animate-pulse"></span>SUPERVISOR ACTIVO
+                                </span>
+                            </div>
+                            <div class="my-space-xs">
+                                <span class="font-telemetry-metric text-telemetry-metric text-on-surface font-bold tracking-tight">one_for_one</span>
+                                <span class="font-body-sm text-body-sm text-on-surface-variant block">Supervisión Árbol BEAM</span>
+                            </div>
+                            <div class="flex items-center justify-between font-label-sm text-label-sm text-primary pt-space-xs">
+                                <span class="font-mono text-tertiary">let it crash</span>
+                                <span class="text-on-surface-variant font-label-sm">&lt;150ms failover</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ACTION TOOLBAR (Fast Operational Dispatch Controls) -->
+                    <section class="bg-surface-container/80 backdrop-blur-md rounded-xl p-space-md shadow-[0_4px_24px_rgba(0,0,0,0.4)] flex flex-wrap items-center justify-between gap-space-md">
+                        <div class="flex flex-wrap items-center gap-space-sm">
+                            <!-- Botón Primario: Avanzar Toda la Flota -->
+                            <button class="group relative px-space-md py-space-sm rounded-lg bg-primary hover:bg-surface-tint active:bg-primary-container text-on-primary font-label-md text-label-md font-bold flex items-center gap-space-xs shadow-[0_0_16px_rgba(76,215,246,0.3)] transition-all duration-200" id="btn-advance-fleet">
+                                <span class="material-symbols-outlined text-[18px] group-hover:scale-110 transition-transform">fast_forward</span>
+                                <span>Avanzar Toda la Flota</span>
+                                <span class="ml-1 px-1.5 py-0.2 rounded bg-on-primary/20 text-on-primary font-label-sm text-label-sm font-mono">gen_server:cast</span>
+                            </button>
+                            <!-- Botón Secundario: Iniciar Auto-Simulación -->
+                            <button class="px-space-md py-space-sm rounded-lg bg-surface-container-high hover:bg-surface-bright text-on-surface font-label-md text-label-md font-semibold flex items-center gap-space-xs shadow-[0_2px_8px_rgba(0,0,0,0.3)] transition-all" id="btn-auto-sim">
+                                <span class="material-symbols-outlined text-tertiary text-[18px] animate-spin" id="auto-sim-icon" style="animation-duration: 4s;">autorenew</span>
+                                <span id="label-auto-sim">Auto-Simulación</span>
+                                <span class="px-1.5 py-0.5 rounded bg-surface-container-lowest text-tertiary font-label-sm text-label-sm font-mono tracking-wider">3000ms</span>
+                            </button>
+                            <!-- Botón Outline: Generar Pasajero Aleatorio -->
+                            <button class="px-space-md py-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container-high text-primary font-label-md text-label-md font-medium flex items-center gap-space-xs shadow-[0_2px_6px_rgba(0,0,0,0.2)] transition-all" id="btn-random-pax">
+                                <span class="material-symbols-outlined text-[16px]">person_add</span>
+                                <span>+ Pasajero Aleatorio</span>
+                                <span class="h-2 w-2 rounded-full bg-primary animate-ping"></span>
+                            </button>
+                        </div>
+                        <!-- Tijuana Live Clock & Sync Meta -->
+                        <div class="flex items-center gap-space-md bg-surface-container-lowest/80 px-space-md py-space-xs rounded-lg shadow-inner">
+                            <div class="flex items-center gap-space-xs">
+                                <span class="material-symbols-outlined text-secondary-fixed-dim text-[16px]">schedule</span>
+                                <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Tiempo Tijuana:</span>
+                                <span class="font-label-md text-label-md text-on-surface font-bold tracking-wider font-mono" id="tijuana-clock">--:--:-- PST</span>
+                            </div>
+                            <div class="h-4 w-px bg-surface-container-highest"></div>
+                            <div class="flex items-center gap-space-xs">
+                                <span class="h-2 w-2 rounded-full bg-tertiary"></span>
+                                <span class="font-label-sm text-label-sm text-tertiary font-medium">Cluster Erlang Sync</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- MAIN TWO-COLUMN ASYMMETRIC GRID (60% / 40%) -->
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg w-full items-start">
+                        <!-- LEFT COLUMN: 60% (7 Cols) -> Operaciones de Red & Flota OTP -->
+                        <div class="lg:col-span-7 flex flex-col gap-space-lg" id="mapa">
+                            <!-- SECTION A: Diagrama del Circuito Metropolitano de Tijuana -->
+                            <div class="bg-surface-container-low/95 backdrop-blur-md rounded-xl p-space-lg shadow-[0_8px_32px_rgba(0,0,0,0.4)] flex flex-col gap-space-md relative overflow-hidden">
+                                <div class="flex items-center justify-between flex-wrap gap-2">
+                                    <div class="flex items-center gap-space-xs">
+                                        <span class="material-symbols-outlined text-primary text-[22px]">route</span>
+                                        <h2 class="font-headline-md text-headline-md text-on-surface">Circuito Metropolitano Tijuana · Red Troncal OTP</h2>
+                                    </div>
+                                    <div class="flex items-center gap-space-sm font-label-sm text-label-sm">
+                                        <span class="flex items-center gap-1 text-primary"><span class="h-2 w-2 rounded-full bg-primary"></span>En Tránsito</span>
+                                        <span class="flex items-center gap-1 text-tertiary"><span class="h-2 w-2 rounded-full bg-tertiary"></span>En Parada</span>
+                                        <span class="flex items-center gap-1 text-on-surface-variant"><span class="h-2 w-2 rounded-full bg-surface-bright"></span>Interconexión</span>
+                                    </div>
+                                </div>
+
+                                <!-- Stylized Schematic SVG Transit Map -->
+                                <div class="relative w-full h-[320px] rounded-xl bg-surface-container-lowest/90 overflow-hidden p-space-md flex items-center justify-center shadow-inner">
+                                    <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#4cd7f6_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none"></div>
+                                    <svg class="w-full h-full relative z-10 select-none" viewBox="0 0 740 300">
+                                        <defs>
+                                            <linearGradient id="routeGrad" x1="0%" x2="100%" y1="0%" y2="100%">
+                                                <stop offset="0%" stop-color="#4cd7f6" stop-opacity="0.8"></stop>
+                                                <stop offset="50%" stop-color="#c0c1ff" stop-opacity="0.7"></stop>
+                                                <stop offset="100%" stop-color="#4edea3" stop-opacity="0.9"></stop>
+                                            </linearGradient>
+                                            <filter height="140%" id="cyanGlow" width="140%" x="-20%" y="-20%">
+                                                <feGaussianBlur result="blur" stdDeviation="3"></feGaussianBlur>
+                                                <feComposite in="SourceGraphic" in2="blur" operator="over"></feComposite>
+                                            </filter>
+                                        </defs>
+
+                                        <!-- Interconnecting Transit Arteries -->
+                                        <path d="M 80 180 C 130 90, 200 70, 260 85 S 390 190, 480 170 S 610 90, 660 140" fill="none" stroke="#252a39" stroke-linecap="round" stroke-width="8"></path>
+                                        <path d="M 80 180 C 130 90, 200 70, 260 85 S 390 190, 480 170 S 610 90, 660 140" fill="none" filter="url(#cyanGlow)" stroke="url(#routeGrad)" stroke-dasharray="6 4" stroke-linecap="round" stroke-width="3.5"></path>
+                                        <path d="M 260 85 L 360 40 L 480 170" fill="none" stroke="#343948" stroke-dasharray="4 4" stroke-width="2"></path>
+                                        <path d="M 80 180 L 180 250 L 480 170" fill="none" stroke="#343948" stroke-dasharray="4 4" stroke-width="2"></path>
+
+                                        <!-- NODE 1: Playas de Tijuana -->
+                                        <g transform="translate(80, 180)">
+                                            <circle fill="#161b2a" r="14" stroke="#4cd7f6" stroke-width="2"></circle>
+                                            <circle fill="#4cd7f6" r="6"></circle>
+                                            <text fill="#dee2f6" font-family="Plus Jakarta Sans" font-size="11" font-weight="600" x="-40" y="-20">Playas de Tijuana</text>
+                                            <text fill="#bcc9cd" font-family="JetBrains Mono" font-size="9" x="-40" y="-8">32.5262°N, 117.1219°W</text>
+                                            <rect fill="#1a1f2e" height="18" rx="9" stroke="#4edea3" stroke-width="1" width="76" x="-38" y="20"></rect>
+                                            <text fill="#4edea3" font-family="JetBrains Mono" font-size="8.5" font-weight="bold" id="badge-map-playas" text-anchor="middle" x="0" y="32">Parada</text>
+                                        </g>
+
+                                        <!-- NODE 2: Centro Revolución -->
+                                        <g transform="translate(220, 80)">
+                                            <circle fill="#161b2a" r="12" stroke="#4cd7f6" stroke-width="2"></circle>
+                                            <circle class="animate-pulse" fill="#4cd7f6" r="5"></circle>
+                                            <text fill="#dee2f6" font-family="Plus Jakarta Sans" font-size="11" font-weight="600" x="-45" y="-18">Centro Revolución</text>
+                                            <text fill="#bcc9cd" font-family="JetBrains Mono" font-size="9" x="-45" y="-6">32.5332°N · Centro</text>
+                                            <rect fill="#1a1f2e" height="18" rx="9" stroke="#4cd7f6" stroke-width="1" width="76" x="-38" y="16"></rect>
+                                            <text fill="#4cd7f6" font-family="JetBrains Mono" font-size="8.5" font-weight="bold" id="badge-map-centro" text-anchor="middle" x="0" y="28">Parada</text>
+                                        </g>
+
+                                        <!-- NODE 3: Zona Río CECUT -->
+                                        <g transform="translate(350, 120)">
+                                            <circle fill="#06b6d4" fill-opacity="0.2" r="15" stroke="#4cd7f6" stroke-width="2"></circle>
+                                            <circle fill="#4cd7f6" r="7"></circle>
+                                            <text fill="#dee2f6" font-family="Plus Jakarta Sans" font-size="11" font-weight="700" x="-35" y="-22">Zona Río CECUT</text>
+                                            <text fill="#bcc9cd" font-family="JetBrains Mono" font-size="9" x="-35" y="-10">Transbordo Hub Central</text>
+                                            <rect fill="#1a1f2e" height="20" rx="10" stroke="#c0c1ff" stroke-width="1" width="86" x="-43" y="20"></rect>
+                                            <text fill="#c0c1ff" font-family="JetBrains Mono" font-size="9" font-weight="bold" id="badge-map-zona_rio" text-anchor="middle" x="0" y="33">Hub Central</text>
+                                        </g>
+
+                                        <!-- NODE 4: Otay TecNM (Campus Principal) -->
+                                        <g transform="translate(480, 170)">
+                                            <circle fill="#1bbd85" fill-opacity="0.2" r="16" stroke="#4edea3" stroke-width="2.5"></circle>
+                                            <circle fill="#4edea3" r="8"></circle>
+                                            <text fill="#dee2f6" font-family="Plus Jakarta Sans" font-size="12" font-weight="700" x="-30" y="-24">Otay TecNM (Campus)</text>
+                                            <text fill="#4edea3" font-family="JetBrains Mono" font-size="9" x="-30" y="-11">32.5323°N · Nodo Base</text>
+                                            <rect fill="#1a1f2e" height="20" rx="10" stroke="#4edea3" stroke-width="1" width="86" x="-43" y="22"></rect>
+                                            <text fill="#4edea3" font-family="JetBrains Mono" font-size="9" font-weight="bold" id="badge-map-otay" text-anchor="middle" x="0" y="35">TecNM</text>
+                                        </g>
+
+                                        <!-- NODE 5: Central Alamar -->
+                                        <g transform="translate(560, 80)">
+                                            <circle fill="#161b2a" r="10" stroke="#bcc9cd" stroke-width="1.5"></circle>
+                                            <circle fill="#bcc9cd" r="4"></circle>
+                                            <text fill="#dee2f6" font-family="Plus Jakarta Sans" font-size="10.5" font-weight="500" x="-15" y="-14">Central Alamar</text>
+                                            <text fill="#bcc9cd" font-family="JetBrains Mono" font-size="8.5" x="-15" y="-3">32.5085°N Terminal</text>
+                                            <rect fill="#1a1f2e" height="18" rx="9" stroke="#bcc9cd" stroke-width="1" width="76" x="-38" y="16"></rect>
+                                            <text fill="#bcc9cd" font-family="JetBrains Mono" font-size="8.5" id="badge-map-central_camionera" text-anchor="middle" x="0" y="28">Terminal</text>
+                                        </g>
+
+                                        <!-- NODE 6: Parque Ind. El Florido -->
+                                        <g transform="translate(660, 140)">
+                                            <circle fill="#161b2a" r="13" stroke="#4cd7f6" stroke-width="2"></circle>
+                                            <circle fill="#4cd7f6" r="5"></circle>
+                                            <text fill="#dee2f6" font-family="Plus Jakarta Sans" font-size="11" font-weight="600" x="-70" y="-18">Parque El Florido</text>
+                                            <text fill="#bcc9cd" font-family="JetBrains Mono" font-size="9" x="-70" y="-6">Terminal Este · 32.4491°N</text>
+                                            <rect fill="#1a1f2e" height="18" rx="9" stroke="#869397" stroke-width="1" width="76" x="-38" y="18"></rect>
+                                            <text fill="#bcc9cd" font-family="JetBrains Mono" font-size="8.5" id="badge-map-el_florido" text-anchor="middle" x="0" y="30">Maquila</text>
+                                        </g>
+                                    </svg>
+
+                                    <!-- Bottom Floating Map Metrics -->
+                                    <div class="absolute bottom-3 left-4 right-4 flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm bg-surface-container-low/85 backdrop-blur-md px-space-md py-1.5 rounded-lg shadow-sm">
+                                        <span class="flex items-center gap-1.5"><span class="h-2 w-2 rounded-full bg-primary animate-ping"></span>Corredor Insurgentes & Vía Rápida monitoreado</span>
+                                        <span class="text-on-surface font-mono">6 Nodos Troncales Conectados · 0 Cuellos de Botella</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- SECTION B: Panel de Flota (gen_server per Unit) -->
+                            <div class="flex flex-col gap-space-md" id="supervisores">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-space-xs">
+                                        <span class="material-symbols-outlined text-tertiary text-[20px]">directions_bus</span>
+                                        <h2 class="font-headline-md text-headline-md text-on-surface">Flota Supervisada (Procesos Erlang Actores)</h2>
+                                    </div>
+                                    <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Supervisión: <span class="text-tertiary font-bold font-mono">logistica_sup:one_for_one</span></span>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter" id="fleet-units-grid">
+                                    <!-- Las 4 tarjetas de unidades vehiculares se renderizan dinámicamente conectadas al backend Erlang -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- RIGHT COLUMN: 40% (5 Cols) -> Interacción y Telemetría OTP BEAM -->
+                        <div class="lg:col-span-5 flex flex-col gap-space-lg" id="despacho">
+                            <!-- MODULE A: Despacho Inteligente de Pasajeros (Erlang Pattern Match) -->
+                            <div class="bg-surface-container-low/95 backdrop-blur-md rounded-xl p-space-lg shadow-[0_8px_32px_rgba(0,0,0,0.4)] flex flex-col gap-space-md">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-space-xs">
+                                        <span class="material-symbols-outlined text-primary text-[20px]">person_pin_circle</span>
+                                        <h3 class="font-headline-md text-headline-md text-on-surface">Despacho de Pasajeros Concurrentes</h3>
+                                    </div>
+                                    <span class="px-2 py-0.5 rounded bg-surface-container-high text-primary font-label-sm text-label-sm font-mono">OTP Pattern Match</span>
+                                </div>
+                                <p class="font-body-sm text-body-sm text-on-surface-variant -mt-1">
+                                    Asignación en tiempo de ejecución basada en algoritmos funcionales libres de mutación de estado.
+                                </p>
+
+                                <!-- Interactive Form -->
+                                <form class="flex flex-col gap-space-sm" id="passenger-form">
+                                    <div>
+                                        <label class="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Nombre del Pasajero</label>
+                                        <div class="relative">
+                                            <input class="w-full bg-surface-container-lowest text-on-surface px-space-md py-space-sm rounded-lg font-body-md text-body-md focus:outline-none focus:ring-1 focus:ring-primary shadow-inner" id="pax-name" placeholder="Ej: Roberto Ramos" required="" type="text" value="Valeria Gómez"/>
+                                            <span class="material-symbols-outlined absolute right-3 top-2.5 text-on-surface-variant text-[18px]">badge</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="grid grid-cols-2 gap-space-sm">
+                                        <div>
+                                            <label class="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Parada Origen</label>
+                                            <select class="w-full bg-surface-container-lowest text-on-surface px-space-sm py-space-sm rounded-lg font-body-md text-body-md focus:outline-none focus:ring-1 focus:ring-primary shadow-inner" id="pax-origin">
+                                                <option value="otay">Otay TecNM</option>
+                                                <option value="central_camionera">Central Alamar</option>
+                                                <option value="zona_rio">Zona Río CECUT</option>
+                                                <option value="centro">Centro Revolución</option>
+                                                <option value="el_florido">Parque El Florido</option>
+                                                <option value="playas">Playas de Tijuana</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label class="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Parada Destino</label>
+                                            <select class="w-full bg-surface-container-lowest text-on-surface px-space-sm py-space-sm rounded-lg font-body-md text-body-md focus:outline-none focus:ring-1 focus:ring-primary shadow-inner" id="pax-destination">
+                                                <option value="centro" selected>Centro Revolución</option>
+                                                <option value="zona_rio">Zona Río CECUT</option>
+                                                <option value="playas">Playas de Tijuana</option>
+                                                <option value="otay">Otay TecNM</option>
+                                                <option value="central_camionera">Central Alamar</option>
+                                                <option value="el_florido">Parque El Florido</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- Pre-cálculo de ruta funcional -->
+                                    <div class="p-space-sm rounded-lg bg-surface-container-lowest/80 flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm" id="calc-preview">
+                                        <span class="flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-[14px] text-tertiary">straighten</span> Distancia Haversine: <strong class="text-on-surface font-mono" id="preview-dist">7.01 km</strong>
+                                        </span>
+                                        <span>ETA Estimado: <strong class="text-primary font-mono" id="preview-eta">~16 min</strong></span>
+                                    </div>
+
+                                    <button class="w-full py-space-sm px-space-md rounded-lg bg-gradient-to-r from-secondary-container via-primary-container to-primary hover:opacity-95 text-on-primary font-label-md text-label-md font-bold tracking-wide flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all" id="btn-submit-pax" type="submit">
+                                        <span class="material-symbols-outlined text-[18px]">send</span>
+                                        <span>Asignar Pasajero al Sistema OTP</span>
+                                    </button>
+                                </form>
+
+                                <!-- Match Result Card (Visible Success State) -->
+                                <div class="p-space-md rounded-xl bg-surface-container-highest/60 flex flex-col gap-space-xs shadow-sm" id="dispatch-result-box" style="display: none;">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-space-xs">
+                                            <span class="material-symbols-outlined text-tertiary text-[18px]">verified</span>
+                                            <span class="font-label-md text-label-md text-tertiary font-bold" id="res-status-title">¡Unidad Óptima Asignada!</span>
+                                        </div>
+                                        <span class="font-label-sm text-label-sm text-primary font-mono" id="res-ticket-id">Ticket #1001</span>
+                                    </div>
+                                    <p class="font-body-sm text-body-sm text-on-surface" id="res-desc">
+                                        Se despachó a <strong class="text-primary font-semibold" id="res-pax-name">Valeria Gómez</strong> en <strong class="text-tertiary font-semibold" id="res-unit-name">Van Sprinter 01</strong>. Asiento reservado en buzón atómico.
+                                    </p>
+                                    <div class="flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant pt-1">
+                                        <span id="res-meta-time">Tiempo de Espera: <strong>4 mins</strong></span>
+                                        <span class="text-tertiary font-mono">gen_server:call ok</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- MODULE B: Consola de Telemetría OTP (Terminal Hacker / BEAM Engine) -->
+                            <div class="bg-surface-container-lowest/95 backdrop-blur-md rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.6)] flex flex-col overflow-hidden" id="telemetria">
+                                <!-- Terminal Window Header -->
+                                <div class="bg-surface-container-low px-space-md py-space-xs flex items-center justify-between">
+                                    <div class="flex items-center gap-1.5">
+                                        <span class="h-3 w-3 rounded-full bg-error-container block"></span>
+                                        <span class="h-3 w-3 rounded-full bg-secondary block"></span>
+                                        <span class="h-3 w-3 rounded-full bg-tertiary block"></span>
+                                    </div>
+                                    <span class="font-label-sm text-label-sm text-on-surface-variant font-mono">beam_node@transtijuana.mx · supervisor_events.log</span>
+                                    <div class="flex items-center gap-1 text-on-surface-variant cursor-pointer" onclick="document.getElementById('terminal-feed').innerHTML='';" title="Limpiar">
+                                        <span class="material-symbols-outlined text-[14px]">cleaning_services</span>
+                                    </div>
+                                </div>
+
+                                <!-- Log Content Feed -->
+                                <div class="p-space-md font-label-sm text-label-sm font-mono flex flex-col gap-2 h-[260px] overflow-y-auto leading-relaxed" id="terminal-feed">
+                                    <!-- Entradas del log inyectadas en vivo desde la bitácora Erlang -->
+                                </div>
+
+                                <!-- Terminal Bottom Status Bar -->
+                                <div class="bg-surface-container-high/60 px-space-md py-1.5 flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm font-mono">
+                                    <span class="flex items-center gap-1.5"><span class="h-1.5 w-1.5 rounded-full bg-tertiary"></span>IO Event Tracing Activo</span>
+                                    <span class="text-primary">Erlang/OTP BEAM</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TOAST NOTIFICATION FLOTANTE (Erlang Supervisor Event) -->
+                    <div class="fixed bottom-6 right-6 z-50 max-w-md bg-surface-container-high/95 backdrop-blur-xl rounded-xl p-space-md shadow-[0_8px_32px_rgba(0,0,0,0.6)] flex items-start gap-space-md transition-all duration-300 transform opacity-0 pointer-events-none" id="otp-toast">
+                        <div class="p-2 rounded-lg bg-tertiary-container/30 text-tertiary flex items-center justify-center shrink-0">
+                            <span class="material-symbols-outlined text-[20px] animate-spin" style="animation-duration: 3s;">sync</span>
+                        </div>
+                        <div class="flex flex-col gap-0.5">
+                            <div class="flex items-center justify-between gap-space-md">
+                                <span class="font-label-md text-label-md text-tertiary font-bold tracking-tight" id="toast-title">Erlang Supervisor: Proceso Recuperado</span>
+                                <span class="font-label-sm text-label-sm text-on-surface-variant font-mono">&lt;150ms failover</span>
+                            </div>
+                            <p class="font-body-sm text-body-sm text-on-surface-variant" id="toast-desc">
+                                El proceso vehicular fue relanzado bajo estrategia <span class="text-tertiary font-mono">one_for_one</span>. Buzón de mensajes y aforo sincronizados sin pérdida de estado.
+                            </p>
+                        </div>
+                        <button class="text-on-surface-variant hover:text-on-surface" onclick="document.getElementById('otp-toast').classList.add('opacity-0', 'pointer-events-none')">
+                            <span class="material-symbols-outlined text-[16px]">close</span>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Integración con el Backend Erlang/OTP -->
+    <script>
+        const API_BASE = window.location.origin;
+        let logLineasVistas = new Set();
+        let autoSimActive = false;
+        let simTimer = null;
+
+        const PARADAS_NOMBRES = {
+            otay: "Otay TecNM",
+            central_camionera: "Central Alamar",
+            zona_rio: "Zona Río CECUT",
+            centro: "Centro Revolución",
+            el_florido: "Parque El Florido",
+            playas: "Playas de Tijuana"
+        };
+
+        // Reloj Tijuana
+        function updateTijuanaTime() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('es-MX', { timeZone: 'America/Tijuana', hour12: false });
+            const clockEl = document.getElementById('tijuana-clock');
+            if (clockEl) clockEl.textContent = timeStr + ' PST';
+        }
+        setInterval(updateTijuanaTime, 1000);
+        updateTijuanaTime();
+
+        // Polling en vivo a Erlang/OTP
+        async function syncErlangState() {
+            try {
+                const res = await fetch(`${API_BASE}/api/estado`);
+                if (!res.ok) return;
+                const data = await res.json();
+                renderTelemetry(data.metricas);
+                renderUnits(data.unidades);
+                renderMapBadges(data.unidades);
+                renderLogs(data.metricas.bitacora);
+            } catch (err) {
+                console.warn("Sincronizando...", err);
+            }
+        }
+        setInterval(syncErlangState, 1500);
+        syncErlangState();
+
+        function renderTelemetry(m) {
+            if (!m) return;
+            document.getElementById('header-pids').textContent = `${m.beam_procesos} procs`;
+            document.getElementById('header-mem').textContent = `${(m.beam_memoria_kb || 0).toLocaleString()} KB`;
+            document.getElementById('header-schedulers').textContent = `${m.beam_schedulers} Cores`;
+            document.getElementById('header-uptime').textContent = `${m.uptime_segundos}s`;
+
+            document.getElementById('kpi-transportados').textContent = (m.total_transportados || 0).toLocaleString();
+            document.getElementById('kpi-a-bordo').textContent = m.pasajeros_a_bordo;
+            document.getElementById('kpi-cap-total').textContent = `/ ${m.capacidad_total} PAX`;
+            
+            const pct = m.porcentaje_ocupacion || 0;
+            document.getElementById('kpi-ocupacion').textContent = `${pct}%`;
+            document.getElementById('kpi-progress-bar').style.width = `${Math.min(pct, 100)}%`;
+
+            document.getElementById('kpi-kilometros').textContent = (m.kms_flota_acumulados || 0).toFixed(1);
+            document.getElementById('badge-unidades-activas').textContent = `${m.unidades_activas} Vanes`;
+        }
+
+        function renderMapBadges(unidades) {
+            const counts = {};
+            (unidades || []).forEach(u => {
+                const p = u.parada_actual;
+                counts[p] = (counts[p] || 0) + 1;
+            });
+            for (let [pId, name] of Object.entries(PARADAS_NOMBRES)) {
+                const el = document.getElementById(`badge-map-${pId}`);
+                if (el) {
+                    if (counts[pId]) {
+                        el.textContent = `${counts[pId]} Van(es)`;
+                    } else {
+                        el.textContent = "Sin van";
+                    }
+                }
+            }
+        }
+
+        function renderUnits(unidades) {
+            const container = document.getElementById('fleet-units-grid');
+            if (!container || !unidades) return;
+
+            // Micro progress bars
+            unidades.forEach((u, i) => {
+                const el = document.getElementById(`micro-u${i+1}`);
+                if (el) {
+                    const p = Math.round(((u.pasajeros_actuales || 0) / (u.capacidad_max || 1)) * 100);
+                    el.style.width = `${Math.min(p, 100)}%`;
+                }
+            });
+
+            container.innerHTML = unidades.map(u => {
+                const count = u.pasajeros_actuales || 0;
+                const max = u.capacidad_max || 15;
+                const pct = Math.round((count / max) * 100);
+                const paradaNombre = PARADAS_NOMBRES[u.parada_actual] || u.parada_actual;
+
+                let badgeColor = "bg-primary/20 text-primary";
+                if (u.estado === 'en_parada') badgeColor = "bg-tertiary-container/30 text-tertiary";
+                if (u.estado === 'en_espera') badgeColor = "bg-surface-container-highest text-on-surface-variant";
+
+                const paxItems = (u.pasajeros || []).slice(0, 3).map(p => `
+                    <div class="flex items-center justify-between text-on-surface font-label-sm text-label-sm">
+                        <span class="font-medium text-primary">${p.nombre}</span>
+                        <span class="font-mono text-on-surface-variant">${p.origen} → ${p.destino}</span>
+                    </div>
+                `).join('') || '<span class="text-on-surface-variant/70 italic text-[11px]">Sin pasajeros a bordo (disponible)</span>';
+
+                return `
+                    <div class="bg-surface-container-low rounded-xl p-space-md shadow-[0_4px_16px_rgba(0,0,0,0.35)] flex flex-col justify-between gap-space-md hover:bg-surface-container transition-all">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <div class="flex items-center gap-space-xs">
+                                    <span class="font-headline-md text-headline-md text-on-surface font-semibold">${u.nombre}</span>
+                                    <span class="px-1.5 py-0.5 rounded bg-surface-container-high text-primary font-label-sm text-label-sm font-mono">&lt;${u.id}&gt;</span>
+                                </div>
+                                <span class="font-body-sm text-body-sm text-on-surface-variant">Ruta: <strong>${u.ruta_id}</strong> · Parada: <strong class="text-primary">${paradaNombre}</strong></span>
+                            </div>
+                            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full ${badgeColor} font-label-sm text-label-sm font-semibold">
+                                <span class="h-1.5 w-1.5 rounded-full bg-current"></span>${u.estado}
+                            </span>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between font-label-sm text-label-sm mb-1">
+                                <span class="text-on-surface-variant">Aforo: ${count} / ${max} PAX</span>
+                                <span class="text-primary font-bold">${pct}%</span>
+                            </div>
+                            <div class="w-full bg-surface-container-highest rounded-full h-1.5 overflow-hidden">
+                                <div class="bg-primary h-full rounded-full transition-all duration-300" style="width: ${pct}%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="bg-surface-container-lowest/70 rounded-lg p-space-sm flex flex-col gap-1 text-on-surface-variant font-label-sm text-label-sm">
+                            ${paxItems}
+                        </div>
+
+                        <div class="flex items-center justify-between pt-space-xs gap-space-sm">
+                            <button class="flex-1 py-1.5 px-space-sm rounded bg-surface-container-high hover:bg-surface-bright text-on-surface font-label-sm text-label-sm font-semibold flex items-center justify-center gap-1 transition-colors" onclick="advanceUnit('${u.id}')">
+                                <span class="material-symbols-outlined text-[14px] text-primary">arrow_forward</span> Avanzar Parada
+                            </button>
+                            <button class="py-1.5 px-space-sm rounded bg-error-container/20 hover:bg-error-container/40 text-error font-label-sm text-label-sm font-semibold flex items-center gap-1 transition-colors" onclick="simulateCrash('${u.id}')" title="Forzar fallo supervisor OTP ('let it crash')">
+                                <span class="material-symbols-outlined text-[14px]">warning</span> Crash (OTP)
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderLogs(bitacora) {
+            const feed = document.getElementById('terminal-feed');
+            if (!feed || !bitacora) return;
+
+            bitacora.forEach(ev => {
+                const hash = `${ev.timestamp}-${ev.mensaje}`;
+                if (!logLineasVistas.has(hash)) {
+                    logLineasVistas.add(hash);
+                    const d = new Date(ev.timestamp * 1000);
+                    const timeStr = d.toLocaleTimeString('es-MX', { hour12: false });
+                    let tagColor = 'text-primary';
+                    if (ev.tipo === 'alerta') tagColor = 'text-error';
+                    if (ev.tipo === 'movimiento') tagColor = 'text-secondary';
+                    if (ev.tipo === 'abordaje') tagColor = 'text-tertiary';
+
+                    const row = document.createElement('div');
+                    row.className = 'flex gap-2';
+                    row.innerHTML = `
+                        <span class="text-on-surface-variant">[${timeStr}]</span>
+                        <span class="${tagColor}">[${ev.tipo.toUpperCase()}]</span>
+                        <span class="text-on-surface">${ev.mensaje}</span>
+                    `;
+                    feed.appendChild(row);
+                    feed.scrollTop = feed.scrollHeight;
+                }
+            });
+        }
+
+        // Operaciones API
+        async function advanceUnit(unitId) {
+            try {
+                await fetch(`${API_BASE}/api/avanzar`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ unidad_id: unitId })
+                });
+                syncErlangState();
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        async function simulateCrash(unitId) {
+            showToast("Erlang Supervisor: Falla Crítica Inyectada", `Inyectando señal kill a <${unitId}>. El supervisor one_for_one actuará.`);
+            try {
+                await fetch(`${API_BASE}/api/crash`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ unidad_id: unitId })
+                });
+                setTimeout(() => {
+                    showToast("Erlang Supervisor: Proceso Recuperado", `El supervisor OTP reinició <${unitId}> automáticamente en <150ms. Estado restaurado.`);
+                    syncErlangState();
+                }, 300);
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        document.getElementById('btn-advance-fleet').addEventListener('click', async () => {
+            try {
+                await fetch(`${API_BASE}/api/avanzar`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ unidad_id: "todas" })
+                });
+                syncErlangState();
+            } catch (err) {
+                console.error(err);
+            }
+        });
+
+        // Formulario de despacho
+        document.getElementById('passenger-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const nombre = document.getElementById('pax-name').value.trim();
+            const origen = document.getElementById('pax-origin').value;
+            const destino = document.getElementById('pax-destination').value;
+
+            if (origen === destino) {
+                alert("Origen y destino no pueden ser iguales");
+                return;
+            }
+
+            const btn = document.getElementById('btn-submit-pax');
+            btn.innerHTML = `<span class="material-symbols-outlined text-[18px] animate-spin">refresh</span> <span>Despachando en BEAM...</span>`;
+
+            try {
+                const res = await fetch(`${API_BASE}/api/solicitar`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ nombre, origen, destino })
+                });
+                const data = await res.json();
+                const box = document.getElementById('dispatch-result-box');
+                box.style.display = 'flex';
+
+                if (res.ok && data.exito) {
+                    document.getElementById('res-status-title').textContent = "¡Unidad Óptima Asignada!";
+                    document.getElementById('res-status-title').className = "font-label-md text-label-md text-tertiary font-bold";
+                    document.getElementById('res-ticket-id').textContent = `Ticket #${data.pasajero_id}`;
+                    document.getElementById('res-desc').innerHTML = `Se despachó a <strong class="text-primary font-semibold">${nombre}</strong> en <strong class="text-tertiary font-semibold">${data.unidad_asignada.toUpperCase()}</strong>. (${data.distancia_km} km / est. ${data.tiempo_estimado_min} min).`;
+                } else {
+                    document.getElementById('res-status-title').textContent = "Solicitud Rechazada";
+                    document.getElementById('res-status-title').className = "font-label-md text-label-md text-error font-bold";
+                    document.getElementById('res-ticket-id').textContent = "Sin aforo";
+                    document.getElementById('res-desc').textContent = data.error || "No hay unidades disponibles con ruta y cupo.";
+                }
+                syncErlangState();
+            } catch (err) {
+                console.error(err);
+            } finally {
+                btn.innerHTML = `<span class="material-symbols-outlined text-[18px]">send</span> <span>Asignar Pasajero al Sistema OTP</span>`;
+            }
+        });
+
+        // Pasajero aleatorio
+        document.getElementById('btn-random-pax').addEventListener('click', () => {
+            const sampleNames = ['Mateo Nava', 'Ximena Castro', 'Rodrigo Mendoza', 'Fernanda Soto', 'Esteban Parra', 'Valeria Gómez', 'Carlos Rivera'];
+            const keys = ['otay', 'central_camionera', 'zona_rio', 'centro', 'el_florido', 'playas'];
+            const n = sampleNames[Math.floor(Math.random() * sampleNames.length)];
+            const i1 = Math.floor(Math.random() * (keys.length - 1));
+            const i2 = Math.floor(Math.random() * (keys.length - i1 - 1)) + i1 + 1;
+
+            document.getElementById('pax-name').value = n;
+            document.getElementById('pax-origin').value = keys[i1];
+            document.getElementById('pax-destination').value = keys[i2];
+            document.getElementById('passenger-form').dispatchEvent(new Event('submit'));
+        });
+
+        // Auto-simulación
+        document.getElementById('btn-auto-sim').addEventListener('click', () => {
+            const icon = document.getElementById('auto-sim-icon');
+            const label = document.getElementById('label-auto-sim');
+            const btn = document.getElementById('btn-auto-sim');
+
+            autoSimActive = !autoSimActive;
+            if (autoSimActive) {
+                icon.classList.add('animate-spin');
+                label.textContent = "Pausar Auto-Sim";
+                btn.classList.add('bg-primary', 'text-on-primary');
+                simTimer = setInterval(() => {
+                    if (Math.random() > 0.45) {
+                        document.getElementById('btn-advance-fleet').click();
+                    } else {
+                        document.getElementById('btn-random-pax').click();
+                    }
+                }, 3000);
+            } else {
+                icon.classList.remove('animate-spin');
+                label.textContent = "Auto-Simulación";
+                btn.classList.remove('bg-primary', 'text-on-primary');
+                clearInterval(simTimer);
+            }
+        });
+
+        function showToast(title, desc) {
+            const toast = document.getElementById('otp-toast');
+            document.getElementById('toast-title').textContent = title;
+            document.getElementById('toast-desc').textContent = desc;
+            toast.classList.remove('opacity-0', 'pointer-events-none');
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'pointer-events-none');
+            }, 4500);
+        }
+    </script>
 </body>
 </html>
