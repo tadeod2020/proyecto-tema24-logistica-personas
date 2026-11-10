@@ -1,0 +1,16 @@
+# Erlang compiled files
+*.beam
+ebin/*.beam
+erl_crash.dump
+
+# Temporary and editor files
+*~
+*.swp
+*.swo
+.DS_Store
+.idea/
+.vscode/
+
+# Build artifacts
+.rebar/
+_build/
