@@ -55,7 +55,7 @@ init([]) ->
 
     Unidad2Child = #{
         id       => unidad_2,
-        start    => {logistica_unidad, start_link, [unidad_2, "Minibús Crafter 02 (Maquila)", ruta_maquila, RutaMaquila, 22]},
+        start    => {logistica_unidad, start_link, [unidad_2, "Minibus Crafter 02 (Maquila)", ruta_maquila, RutaMaquila, 22]},
         restart  => permanent,
         shutdown => 3000,
         type     => worker,
@@ -64,7 +64,7 @@ init([]) ->
 
     Unidad3Child = #{
         id       => unidad_3,
-        start    => {logistica_unidad, start_link, [unidad_3, "Microbús 03 (Costa / Playas)", ruta_costa, RutaCosta, 18]},
+        start    => {logistica_unidad, start_link, [unidad_3, "Microbus 03 (Costa / Playas)", ruta_costa, RutaCosta, 18]},
         restart  => permanent,
         shutdown => 3000,
         type     => worker,

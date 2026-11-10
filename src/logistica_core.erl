@@ -42,10 +42,10 @@ paradas_catalogo() ->
     [
         #parada{id = otay,               nombre = "Otay - TecNM Campus Tijuana", lat = 32.5323, lon = -116.9634},
         #parada{id = central_camionera,  nombre = "Terminal Central Alamar",     lat = 32.5085, lon = -116.9622},
-        #parada{id = zona_rio,           nombre = "Zona Río - Centro Cultural",  lat = 32.5284, lon = -117.0228},
-        #parada{id = centro,             nombre = "Centro Histórico / Revolución",lat = 32.5332, lon = -117.0382},
+        #parada{id = zona_rio,           nombre = "Zona Rio - Centro Cultural",  lat = 32.5284, lon = -117.0228},
+        #parada{id = centro,             nombre = "Centro Historico / Revolucion",lat = 32.5332, lon = -117.0382},
         #parada{id = el_florido,         nombre = "Parque Industrial El Florido", lat = 32.4491, lon = -116.8225},
-        #parada{id = playas,             nombre = "Playas de Tijuana - Malecón", lat = 32.5262, lon = -117.1219}
+        #parada{id = playas,             nombre = "Playas de Tijuana - Malecon", lat = 32.5262, lon = -117.1219}
     ].
 
 -spec obtener_parada(atom()) -> {ok, #parada{}} | {error, parada_no_encontrada}.

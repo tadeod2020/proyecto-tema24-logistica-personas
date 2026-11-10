@@ -3,646 +3,550 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>TransTijuana OTP · Logística de Personas (Tema 24)</title>
-    <meta content="web_dashboard" name="shell-type"/>
-    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <title>TransTijuana OTP · Logística y Transporte Concurrente de Personas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-    <style>
-        @layer base {
-            html, body { margin: 0; padding: 0; }
-            body { overscroll-behavior: none; }
-            main > :first-child { margin-top: 0 !important; }
-            main > :last-child { margin-bottom: 0 !important; }
-        }
-        ::-webkit-scrollbar { display: none; }
-    </style>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script id="tailwind-config">
+    <script>
         tailwind.config = {
             darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        "on-primary": "#003640",
-                        "on-tertiary-fixed-variant": "#005236",
-                        "on-secondary": "#1000a9",
-                        "inverse-surface": "#dee2f6",
-                        "surface-container-lowest": "#090e1c",
-                        "surface-tint": "#4cd7f6",
-                        "inverse-primary": "#00687a",
-                        "on-tertiary": "#003824",
-                        "primary": "#4cd7f6",
-                        "on-secondary-fixed-variant": "#2f2ebe",
-                        "surface-container-high": "#252a39",
-                        "on-secondary-container": "#b0b2ff",
-                        "tertiary-fixed-dim": "#4edea3",
-                        "on-surface": "#dee2f6",
-                        "secondary-fixed-dim": "#c0c1ff",
-                        "surface-dim": "#0e1321",
-                        "on-background": "#dee2f6",
-                        "surface-bright": "#343948",
-                        "error-container": "#93000a",
-                        "tertiary-container": "#1bbd85",
-                        "outline": "#869397",
-                        "error": "#ffb4ab",
-                        "surface-container-highest": "#303444",
-                        "on-tertiary-container": "#00452e",
-                        "inverse-on-surface": "#2b303f",
-                        "on-tertiary-fixed": "#002113",
-                        "surface": "#0e1321",
-                        "on-primary-fixed": "#001f26",
-                        "tertiary-fixed": "#6ffbbe",
-                        "on-primary-container": "#00424f",
-                        "on-error": "#690005",
-                        "on-primary-fixed-variant": "#004e5c",
-                        "background": "#0e1321",
-                        "surface-container-low": "#161b2a",
-                        "on-error-container": "#ffdad6",
-                        "on-secondary-fixed": "#07006c",
-                        "surface-variant": "#303444",
-                        "outline-variant": "#3d494c",
-                        "secondary": "#c0c1ff",
-                        "on-surface-variant": "#bcc9cd",
-                        "secondary-container": "#3131c0",
-                        "tertiary": "#4edea3",
-                        "primary-container": "#06b6d4",
-                        "primary-fixed": "#acedff",
-                        "surface-container": "#1a1f2e",
-                        "secondary-fixed": "#e1e0ff",
-                        "primary-fixed-dim": "#4cd7f6"
-                    },
-                    borderRadius: {
-                        DEFAULT: "0.25rem",
-                        lg: "0.5rem",
-                        xl: "0.75rem",
-                        full: "9999px"
-                    },
-                    spacing: {
-                        "space-lg": "1.25rem",
-                        "margin": "1.5rem",
-                        "space-xs": "0.25rem",
-                        "space-xl": "2rem",
-                        "gutter": "1rem",
-                        "space-md": "0.75rem",
-                        "gutter-mobile": "0.75rem",
-                        "space-sm": "0.5rem",
-                        "margin-mobile": "1rem"
+                        brand: {
+                            cyan: "#06b6d4",
+                            teal: "#14b8a6",
+                            indigo: "#6366f1",
+                            emerald: "#10b981",
+                            amber: "#f59e0b",
+                            rose: "#f43f5e"
+                        },
+                        dark: {
+                            950: "#090d16",
+                            900: "#0f172a",
+                            850: "#131d35",
+                            800: "#1e293b",
+                            700: "#334155",
+                            600: "#475569"
+                        }
                     },
                     fontFamily: {
-                        "headline-lg": ["Plus Jakarta Sans"],
-                        "telemetry-metric": ["JetBrains Mono"],
-                        "headline-xl": ["Plus Jakarta Sans"],
-                        "body-sm": ["Plus Jakarta Sans"],
-                        "label-sm": ["JetBrains Mono"],
-                        "headline-lg-mobile": ["Plus Jakarta Sans"],
-                        "body-lg": ["Plus Jakarta Sans"],
-                        "headline-md": ["Plus Jakarta Sans"],
-                        "headline-xl-mobile": ["Plus Jakarta Sans"],
-                        "label-md": ["JetBrains Mono"],
-                        "label-lg": ["JetBrains Mono"],
-                        "body-md": ["Plus Jakarta Sans"]
+                        sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
                     }
                 }
             }
         };
     </script>
+    <style>
+        body {
+            background-color: #080c15;
+            color: #f1f5f9;
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+            overflow-x: hidden;
+        }
+        /* Custom scrollbar for terminal */
+        .terminal-scroll::-webkit-scrollbar {
+            width: 5px;
+        }
+        .terminal-scroll::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.6);
+        }
+        .terminal-scroll::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        .glow-cyan {
+            box-shadow: 0 0 25px -5px rgba(6, 182, 212, 0.25);
+        }
+        .glow-card {
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+    </style>
 </head>
-<body class="bg-surface font-body-md text-body-md text-on-surface">
-    <!-- Top Fixed Header -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-xl shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
-        <div class="h-20 w-full px-margin flex items-center justify-between gap-space-md">
-            <div class="flex items-center gap-space-md">
-                <div class="flex items-center gap-space-xs px-space-sm py-1 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm shadow-[0_0_12px_rgba(6,182,212,0.25)]">
-                    <span class="material-symbols-outlined text-[14px] text-primary">bolt</span>
-                    <span>TEMA 24 · ERLANG / OTP</span>
+<body class="min-h-screen flex flex-col selection:bg-brand-cyan/20 selection:text-brand-cyan">
+
+    <!-- Top Navigation Header (Spacious & Clean) -->
+    <header class="sticky top-0 z-50 bg-dark-900/90 backdrop-blur-xl border-b border-dark-800 shadow-lg">
+        <div class="max-w-[1600px] mx-auto px-6 lg:px-10 h-20 flex items-center justify-between gap-6">
+            
+            <!-- Brand & Metadata -->
+            <div class="flex items-center gap-4">
+                <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-cyan via-brand-indigo to-brand-cyan flex items-center justify-center text-white shadow-md shadow-brand-cyan/20">
+                    <span class="material-symbols-outlined text-[24px]">directions_bus</span>
                 </div>
                 <div class="flex flex-col">
-                    <div class="flex items-center gap-space-xs">
-                        <span class="font-headline-md text-headline-md tracking-tight text-on-surface">TransTijuana OTP</span>
-                        <span class="font-headline-md text-headline-md text-primary">·</span>
-                        <span class="font-headline-md text-headline-md text-on-surface-variant font-normal">Logística de Personas</span>
+                    <div class="flex items-center gap-2.5">
+                        <span class="text-xl font-extrabold tracking-tight text-white">TransTijuana OTP</span>
+                        <span class="px-2 py-0.5 rounded-full text-[10px] font-bold tracking-wider font-mono bg-brand-cyan/15 text-brand-cyan border border-brand-cyan/30">
+                            TEMA 24 · ERLANG
+                        </span>
                     </div>
-                    <span class="font-label-sm text-label-sm text-on-surface-variant">Axel Tadeo Daniels Ceballos · TecNM Campus Tijuana</span>
+                    <span class="text-xs text-slate-400 font-medium">
+                        Logística de Personas · <strong class="text-slate-300">Axel Tadeo Daniels Ceballos</strong> · TecNM Campus Tijuana
+                    </span>
                 </div>
             </div>
 
-            <!-- BEAM Telemetry pill -->
-            <div class="hidden xl:flex items-center gap-space-md px-space-md py-space-xs rounded-lg bg-surface-container-low shadow-[0_2px_12px_rgba(0,0,0,0.4)]">
-                <div class="flex items-center gap-space-xs pr-space-md">
+            <!-- BEAM VM Telemetry Pill (Clean & Readable) -->
+            <div class="hidden xl:flex items-center gap-6 px-5 py-2.5 rounded-xl bg-dark-950/80 border border-dark-800 shadow-inner">
+                <div class="flex items-center gap-2.5 pr-4 border-r border-dark-800">
                     <span class="relative flex h-2.5 w-2.5">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-tertiary opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-tertiary"></span>
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-emerald opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-emerald"></span>
                     </span>
                     <div class="flex flex-col">
-                        <span class="font-label-sm text-label-sm text-tertiary font-bold tracking-wider">BEAM VM ACTIVA</span>
-                        <span class="font-label-sm text-label-sm text-on-surface-variant" id="header-otp-release">OTP 25+</span>
+                        <span class="text-[11px] font-bold font-mono tracking-wider text-brand-emerald">BEAM VM ACTIVA</span>
+                        <span class="text-[10px] text-slate-400 font-mono">OTP 25+ / Linux</span>
                     </div>
                 </div>
-                <div class="flex items-center gap-space-md font-label-md text-label-md">
+
+                <div class="flex items-center gap-6 text-xs font-mono">
                     <div class="flex flex-col">
-                        <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">PIDs</span>
-                        <span class="font-label-md text-label-md text-primary font-bold" id="header-pids">-- procs</span>
+                        <span class="text-[10px] text-slate-500 uppercase tracking-wider">Procesos</span>
+                        <span class="text-brand-cyan font-bold" id="header-pids">-- procs</span>
                     </div>
                     <div class="flex flex-col">
-                        <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Memoria</span>
-                        <span class="font-label-md text-label-md text-on-surface font-semibold" id="header-mem">-- KB</span>
+                        <span class="text-[10px] text-slate-500 uppercase tracking-wider">Memoria</span>
+                        <span class="text-slate-200 font-semibold" id="header-mem">-- KB</span>
                     </div>
                     <div class="flex flex-col">
-                        <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Schedulers</span>
-                        <span class="font-label-md text-label-md text-on-surface font-semibold" id="header-schedulers">-- Cores</span>
+                        <span class="text-[10px] text-slate-500 uppercase tracking-wider">Schedulers</span>
+                        <span class="text-slate-200 font-semibold" id="header-schedulers">-- Cores</span>
                     </div>
                     <div class="flex flex-col">
-                        <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Uptime</span>
-                        <span class="font-label-md text-label-md text-secondary-fixed-dim font-medium" id="header-uptime">--s</span>
+                        <span class="text-[10px] text-slate-500 uppercase tracking-wider">Uptime</span>
+                        <span class="text-brand-indigo font-medium" id="header-uptime">--s</span>
                     </div>
                 </div>
             </div>
 
-            <nav class="hidden lg:flex items-center gap-space-xs font-label-md text-label-md">
-                <a aria-current="page" class="px-space-md py-space-xs transition-colors bg-surface-container-high text-primary font-bold rounded-lg shadow-[0_0_10px_rgba(6,182,212,0.15)]" href="#despacho">Despacho en Vivo</a>
-                <a class="px-space-md py-space-xs text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors rounded-lg" href="#supervisores">Supervisores OTP</a>
-                <a class="px-space-md py-space-xs text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors rounded-lg" href="#mapa">Mapa de Rutas</a>
-                <a class="px-space-md py-space-xs text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors rounded-lg" href="#telemetria">Logs de Telemetría</a>
-            </nav>
-
-            <div class="flex items-center gap-space-md">
-                <div class="hidden sm:flex flex-col text-right">
-                    <span class="font-label-md text-label-md text-on-surface font-medium">Ing. de Sistemas</span>
-                    <div class="flex items-center justify-end gap-1.5">
-                        <span class="h-1.5 w-1.5 rounded-full bg-tertiary"></span>
-                        <span class="font-label-sm text-label-sm text-on-surface-variant">Sincronizado</span>
-                    </div>
+            <!-- Right Controls & Clock -->
+            <div class="flex items-center gap-4">
+                <div class="hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-dark-950/60 border border-dark-800 text-xs font-mono text-slate-300">
+                    <span class="material-symbols-outlined text-[16px] text-brand-cyan">schedule</span>
+                    <span id="tijuana-clock">--:--:-- PST</span>
                 </div>
-                <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center font-bold text-on-primary">
-                    <span class="material-symbols-outlined text-[18px]">person</span>
+                <div class="flex items-center gap-2 pl-2">
+                    <span class="h-2 w-2 rounded-full bg-brand-emerald"></span>
+                    <span class="text-xs text-slate-400 font-medium hidden md:inline">Nodo Sincronizado</span>
                 </div>
             </div>
+
         </div>
     </header>
 
-    <!-- Sidebar -->
-    <aside class="fixed left-0 top-20 bottom-0 w-64 bg-surface-container-lowest z-40 flex flex-col justify-between py-space-lg shadow-[4px_0_24px_rgba(0,0,0,0.4)]">
-        <div class="flex flex-col gap-space-lg">
-            <div class="px-space-lg flex items-center justify-between">
-                <span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Supervisión Actor Tree</span>
-                <span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-surface-container-high text-tertiary">one_for_one</span>
-            </div>
-            <nav class="flex flex-col gap-space-xs px-space-md font-label-md text-label-md">
-                <a class="flex items-center gap-space-sm px-space-md py-space-sm transition-colors bg-surface-container-high text-primary font-bold rounded-lg shadow-[0_0_12px_rgba(6,182,212,0.15)]" href="#despacho">
-                    <span class="material-symbols-outlined text-[18px]">commute</span>
-                    <span>Despacho Flota</span>
-                </a>
-                <a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" href="#supervisores">
-                    <span class="material-symbols-outlined text-[18px]">account_tree</span>
-                    <span>Árbol de Supervisión</span>
-                </a>
-                <a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" href="#mapa">
-                    <span class="material-symbols-outlined text-[18px]">alt_route</span>
-                    <span>Red Tijuana Hub</span>
-                </a>
-                <a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" href="#telemetria">
-                    <span class="material-symbols-outlined text-[18px]">terminal</span>
-                    <span>Event Tracing (BEAM)</span>
-                </a>
-            </nav>
-        </div>
+    <!-- Main Container (Full width with comfortable padding) -->
+    <main class="flex-1 max-w-[1600px] w-full mx-auto px-6 lg:px-10 py-8 flex flex-col gap-8">
 
-        <div class="px-space-md">
-            <div class="p-space-md rounded-lg bg-surface-container-low flex flex-col gap-space-xs shadow-[0_2px_8px_rgba(0,0,0,0.3)]">
+        <!-- 1. KPI Cards Strip (5 Spacious Cards) -->
+        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+            <!-- Card 1 -->
+            <div class="bg-dark-900/80 rounded-2xl p-5 border border-dark-800 hover:border-dark-700 transition-all duration-300 glow-card flex flex-col justify-between">
                 <div class="flex items-center justify-between">
-                    <span class="font-label-sm text-label-sm text-on-surface-variant">Nodo Erlang</span>
-                    <span class="font-label-sm text-label-sm text-tertiary">transtijuana@localhost</span>
+                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Personas Transportadas</span>
+                    <span class="p-1.5 rounded-lg bg-brand-emerald/10 text-brand-emerald">
+                        <span class="material-symbols-outlined text-[18px]">done_all</span>
+                    </span>
                 </div>
-                <div class="flex items-center justify-between">
-                    <span class="font-label-sm text-label-sm text-on-surface-variant">Mailbox Queue</span>
-                    <span class="font-label-sm text-label-sm text-primary">0 msgs</span>
+                <div class="my-3">
+                    <div class="text-3xl font-extrabold text-white tracking-tight font-mono" id="kpi-transportados">0</div>
+                    <span class="text-xs text-slate-400 font-medium">Viajes completados a destino</span>
+                </div>
+                <div class="pt-2 border-t border-dark-800/80 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+                    <span>Desembarques</span>
+                    <span class="text-brand-emerald font-semibold">100% éxito</span>
                 </div>
             </div>
-        </div>
-    </aside>
 
-    <!-- Main Content Area -->
-    <div class="pl-64">
-        <main class="relative pt-20 w-full min-h-screen bg-surface">
-            <div class="flex flex-col w-full">
-                <div class="p-space-lg flex flex-col gap-space-lg w-full max-w-[1720px] mx-auto">
-                    
-                    <!-- KPI STRIP (5 High-Density Glassmorphism Metric Cards) -->
-                    <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-gutter w-full">
-                        <!-- Card 1: Personas Transportadas -->
-                        <div class="bg-surface-container-low/90 backdrop-blur-md rounded-xl p-space-md shadow-[0_4px_20px_rgba(0,0,0,0.35)] flex flex-col justify-between hover:bg-surface-container-high/60 transition-all duration-300">
-                            <div class="flex items-center justify-between gap-space-xs">
-                                <span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Conteo Acumulado</span>
-                                <span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-tertiary-container/20 text-tertiary font-label-sm text-label-sm font-semibold">
-                                    <span class="material-symbols-outlined text-[12px]">trending_up</span>En servicio
-                                </span>
-                            </div>
-                            <div class="my-space-xs flex items-baseline justify-between">
-                                <div class="flex flex-col">
-                                    <span class="font-telemetry-metric text-telemetry-metric text-primary font-bold tracking-tight" id="kpi-transportados">0</span>
-                                    <span class="font-body-sm text-body-sm text-on-surface-variant">Personas Transportadas</span>
-                                </div>
-                                <div class="w-16 h-8 text-primary flex items-end">
-                                    <svg class="w-full h-full stroke-current stroke-2" fill="none" viewBox="0 0 64 24">
-                                        <path d="M2 18 L12 15 L22 19 L32 10 L42 12 L52 4 L62 8" stroke-linecap="round" stroke-linejoin="round"></path>
-                                        <path d="M2 18 L12 15 L22 19 L32 10 L42 12 L52 4 L62 8 V24 H2 Z" fill="currentColor" fill-opacity="0.12" stroke="none"></path>
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant/80 pt-space-xs">
-                                <span>Tijuana PST</span>
-                                <span class="text-tertiary font-medium">100% entregas</span>
-                            </div>
-                        </div>
+            <!-- Card 2 -->
+            <div class="bg-dark-900/80 rounded-2xl p-5 border border-dark-800 hover:border-dark-700 transition-all duration-300 glow-card flex flex-col justify-between">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Pasajeros a Bordo</span>
+                    <span class="p-1.5 rounded-lg bg-brand-cyan/10 text-brand-cyan">
+                        <span class="material-symbols-outlined text-[18px]">airline_seat_recline_normal</span>
+                    </span>
+                </div>
+                <div class="my-3">
+                    <div class="flex items-baseline gap-2 font-mono">
+                        <span class="text-3xl font-extrabold text-brand-cyan" id="kpi-a-bordo">0</span>
+                        <span class="text-base text-slate-400 font-normal" id="kpi-cap-total">/ 67 PAX</span>
+                    </div>
+                    <span class="text-xs text-slate-400 font-medium">Aforo total en marcha</span>
+                </div>
+                <!-- Micro barras de capacidad -->
+                <div class="flex items-center gap-1.5 pt-2">
+                    <div class="flex-1 bg-dark-800 rounded-full h-1.5 overflow-hidden">
+                        <div class="bg-brand-cyan h-full transition-all duration-500" id="micro-u1" style="width: 0%"></div>
+                    </div>
+                    <div class="flex-1 bg-dark-800 rounded-full h-1.5 overflow-hidden">
+                        <div class="bg-brand-indigo h-full transition-all duration-500" id="micro-u2" style="width: 0%"></div>
+                    </div>
+                    <div class="flex-1 bg-dark-800 rounded-full h-1.5 overflow-hidden">
+                        <div class="bg-brand-emerald h-full transition-all duration-500" id="micro-u3" style="width: 0%"></div>
+                    </div>
+                    <div class="flex-1 bg-dark-800 rounded-full h-1.5 overflow-hidden">
+                        <div class="bg-slate-500 h-full transition-all duration-500" id="micro-u4" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
 
-                        <!-- Card 2: Pasajeros a Bordo Actuales -->
-                        <div class="bg-surface-container-low/90 backdrop-blur-md rounded-xl p-space-md shadow-[0_4px_20px_rgba(0,0,0,0.35)] flex flex-col justify-between hover:bg-surface-container-high/60 transition-all duration-300">
-                            <div class="flex items-center justify-between">
-                                <span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Aforo en Marcha</span>
-                                <span class="material-symbols-outlined text-secondary text-[16px]">airline_seat_recline_normal</span>
-                            </div>
-                            <div class="my-space-xs">
-                                <div class="flex items-baseline gap-space-xs">
-                                    <span class="font-telemetry-metric text-telemetry-metric text-on-surface font-bold" id="kpi-a-bordo">0</span>
-                                    <span class="font-headline-md text-headline-md text-on-surface-variant font-normal" id="kpi-cap-total">/ 67 PAX</span>
-                                </div>
-                                <span class="font-body-sm text-body-sm text-on-surface-variant">Aforo de Operación Actual</span>
-                            </div>
-                            <!-- Micro barras de aforo por unidad -->
-                            <div class="flex items-center gap-1 pt-space-xs">
-                                <div class="flex-1 bg-surface-container-highest rounded-full h-1.5 overflow-hidden">
-                                    <div class="bg-primary h-full transition-all duration-500" id="micro-u1" style="width: 0%"></div>
-                                </div>
-                                <div class="flex-1 bg-surface-container-highest rounded-full h-1.5 overflow-hidden">
-                                    <div class="bg-secondary-fixed-dim h-full transition-all duration-500" id="micro-u2" style="width: 0%"></div>
-                                </div>
-                                <div class="flex-1 bg-surface-container-highest rounded-full h-1.5 overflow-hidden">
-                                    <div class="bg-tertiary h-full transition-all duration-500" id="micro-u3" style="width: 0%"></div>
-                                </div>
-                                <div class="flex-1 bg-surface-container-highest rounded-full h-1.5 overflow-hidden">
-                                    <div class="bg-outline h-full transition-all duration-500" id="micro-u4" style="width: 0%"></div>
-                                </div>
-                            </div>
-                        </div>
+            <!-- Card 3 -->
+            <div class="bg-dark-900/80 rounded-2xl p-5 border border-dark-800 hover:border-dark-700 transition-all duration-300 glow-card flex flex-col justify-between">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Ocupación de Flota</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-dark-800 text-brand-cyan" id="badge-unidades-activas">4 Vanes</span>
+                </div>
+                <div class="my-3">
+                    <div class="flex items-baseline gap-2">
+                        <span class="text-3xl font-extrabold text-white font-mono" id="kpi-ocupacion">0.0%</span>
+                        <span class="text-xs font-bold text-brand-emerald font-mono uppercase tracking-wider">Óptimo</span>
+                    </div>
+                    <span class="text-xs text-slate-400 font-medium">Balanceo de carga OTP</span>
+                </div>
+                <div class="w-full bg-dark-800 rounded-full h-2 overflow-hidden">
+                    <div class="bg-gradient-to-r from-brand-cyan to-brand-indigo h-full rounded-full transition-all duration-500" id="kpi-progress-bar" style="width: 0%;"></div>
+                </div>
+            </div>
 
-                        <!-- Card 3: Ocupación de Flota -->
-                        <div class="bg-surface-container-low/90 backdrop-blur-md rounded-xl p-space-md shadow-[0_4px_20px_rgba(0,0,0,0.35)] flex flex-col justify-between hover:bg-surface-container-high/60 transition-all duration-300">
-                            <div class="flex items-center justify-between">
-                                <span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Capacidad Global</span>
-                                <span class="px-1.5 py-0.5 rounded bg-surface-container-high text-primary font-label-sm text-label-sm" id="badge-unidades-activas">4 Vanes</span>
-                            </div>
-                            <div class="my-space-xs">
-                                <div class="flex items-baseline gap-2">
-                                    <span class="font-telemetry-metric text-telemetry-metric text-secondary-fixed-dim font-bold" id="kpi-ocupacion">0.0%</span>
-                                    <span class="font-label-sm text-label-sm text-tertiary font-semibold uppercase tracking-wider">Óptimo Concurrente</span>
-                                </div>
-                                <span class="font-body-sm text-body-sm text-on-surface-variant">Ocupación de Flota Total</span>
-                            </div>
-                            <div class="w-full bg-surface-container-highest rounded-full h-2 overflow-hidden mt-space-xs">
-                                <div class="bg-gradient-to-r from-primary to-secondary-fixed-dim h-full rounded-full transition-all duration-500" id="kpi-progress-bar" style="width: 0%;"></div>
-                            </div>
-                        </div>
+            <!-- Card 4 -->
+            <div class="bg-dark-900/80 rounded-2xl p-5 border border-dark-800 hover:border-dark-700 transition-all duration-300 glow-card flex flex-col justify-between">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Kilómetros Recorridos</span>
+                    <span class="p-1.5 rounded-lg bg-brand-emerald/10 text-brand-emerald">
+                        <span class="material-symbols-outlined text-[18px]">satellite_alt</span>
+                    </span>
+                </div>
+                <div class="my-3">
+                    <div class="flex items-baseline gap-1.5 font-mono">
+                        <span class="text-3xl font-extrabold text-brand-emerald" id="kpi-kilometros">0.0</span>
+                        <span class="text-sm text-slate-400 font-bold">km</span>
+                    </div>
+                    <span class="text-xs text-slate-400 font-medium">Fórmula Haversine continua</span>
+                </div>
+                <div class="pt-2 border-t border-dark-800/80 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+                    <span class="flex items-center gap-1"><span class="h-1.5 w-1.5 rounded-full bg-brand-emerald"></span>GPS Exacto</span>
+                    <span>Circuito Tijuana</span>
+                </div>
+            </div>
 
-                        <!-- Card 4: Kilómetros Recorridos -->
-                        <div class="bg-surface-container-low/90 backdrop-blur-md rounded-xl p-space-md shadow-[0_4px_20px_rgba(0,0,0,0.35)] flex flex-col justify-between hover:bg-surface-container-high/60 transition-all duration-300">
-                            <div class="flex items-center justify-between">
-                                <span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Haversine Preciso</span>
-                                <span class="material-symbols-outlined text-tertiary text-[18px]">satellite_alt</span>
-                            </div>
-                            <div class="my-space-xs">
-                                <div class="flex items-baseline gap-1">
-                                    <span class="font-telemetry-metric text-telemetry-metric text-tertiary font-bold" id="kpi-kilometros">0.0</span>
-                                    <span class="font-label-lg text-label-lg text-on-surface-variant">km</span>
-                                </div>
-                                <span class="font-body-sm text-body-sm text-on-surface-variant">Kilómetros Recorridos Hoy</span>
-                            </div>
-                            <div class="flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant pt-space-xs">
-                                <span class="text-tertiary flex items-center gap-1"><span class="h-1.5 w-1.5 rounded-full bg-tertiary"></span>GPS Sync (±1.4m)</span>
-                                <span class="font-label-sm">Circuito Tijuana</span>
-                            </div>
-                        </div>
+            <!-- Card 5 -->
+            <div class="bg-dark-900/80 rounded-2xl p-5 border border-brand-emerald/20 hover:border-brand-emerald/40 transition-all duration-300 glow-card flex flex-col justify-between relative overflow-hidden">
+                <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-brand-emerald/10 rounded-full blur-xl pointer-events-none"></div>
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Resiliencia OTP</span>
+                    <span class="px-2 py-0.5 rounded-full bg-brand-emerald/15 text-brand-emerald text-[10px] font-bold font-mono border border-brand-emerald/30">
+                        ACTIVO
+                    </span>
+                </div>
+                <div class="my-3">
+                    <div class="text-2xl font-extrabold text-white font-mono tracking-tight">one_for_one</div>
+                    <span class="text-xs text-slate-400 font-medium">Supervisión sin estado corrupto</span>
+                </div>
+                <div class="pt-2 border-t border-dark-800/80 flex items-center justify-between text-[11px] text-slate-400 font-mono">
+                    <span class="text-brand-emerald font-semibold">let it crash</span>
+                    <span class="text-slate-500">&lt;150ms failover</span>
+                </div>
+            </div>
+        </section>
 
-                        <!-- Card 5: Resiliencia OTP -->
-                        <div class="bg-surface-container-low/90 backdrop-blur-md rounded-xl p-space-md shadow-[0_4px_20px_rgba(0,0,0,0.35)] flex flex-col justify-between hover:bg-surface-container-high/60 transition-all duration-300 relative overflow-hidden">
-                            <div class="absolute -right-4 -bottom-4 w-20 h-20 bg-tertiary/5 rounded-full blur-xl pointer-events-none"></div>
-                            <div class="flex items-center justify-between">
-                                <span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Resiliencia OTP</span>
-                                <span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-tertiary-container/30 text-tertiary font-label-sm text-label-sm font-bold">
-                                    <span class="h-1.5 w-1.5 rounded-full bg-tertiary animate-pulse"></span>SUPERVISOR ACTIVO
-                                </span>
-                            </div>
-                            <div class="my-space-xs">
-                                <span class="font-telemetry-metric text-telemetry-metric text-on-surface font-bold tracking-tight">one_for_one</span>
-                                <span class="font-body-sm text-body-sm text-on-surface-variant block">Supervisión Árbol BEAM</span>
-                            </div>
-                            <div class="flex items-center justify-between font-label-sm text-label-sm text-primary pt-space-xs">
-                                <span class="font-mono text-tertiary">let it crash</span>
-                                <span class="text-on-surface-variant font-label-sm">&lt;150ms failover</span>
-                            </div>
-                        </div>
-                    </section>
+        <!-- 2. Action Controls Toolbar (Clean & Distinct) -->
+        <section class="bg-dark-900/90 rounded-2xl p-4 border border-dark-800 flex flex-wrap items-center justify-between gap-4 shadow-sm">
+            <div class="flex flex-wrap items-center gap-3">
+                <!-- Avanzar Toda la Flota -->
+                <button class="px-5 py-2.5 rounded-xl bg-brand-cyan hover:bg-brand-cyan/90 text-dark-950 font-bold text-sm flex items-center gap-2 shadow-md shadow-brand-cyan/20 transition-all duration-200 active:scale-95" id="btn-advance-fleet">
+                    <span class="material-symbols-outlined text-[18px]">fast_forward</span>
+                    <span>Avanzar Toda la Flota</span>
+                </button>
 
-                    <!-- ACTION TOOLBAR (Fast Operational Dispatch Controls) -->
-                    <section class="bg-surface-container/80 backdrop-blur-md rounded-xl p-space-md shadow-[0_4px_24px_rgba(0,0,0,0.4)] flex flex-wrap items-center justify-between gap-space-md">
-                        <div class="flex flex-wrap items-center gap-space-sm">
-                            <!-- Botón Primario: Avanzar Toda la Flota -->
-                            <button class="group relative px-space-md py-space-sm rounded-lg bg-primary hover:bg-surface-tint active:bg-primary-container text-on-primary font-label-md text-label-md font-bold flex items-center gap-space-xs shadow-[0_0_16px_rgba(76,215,246,0.3)] transition-all duration-200" id="btn-advance-fleet">
-                                <span class="material-symbols-outlined text-[18px] group-hover:scale-110 transition-transform">fast_forward</span>
-                                <span>Avanzar Toda la Flota</span>
-                                <span class="ml-1 px-1.5 py-0.2 rounded bg-on-primary/20 text-on-primary font-label-sm text-label-sm font-mono">gen_server:cast</span>
-                            </button>
-                            <!-- Botón Secundario: Iniciar Auto-Simulación -->
-                            <button class="px-space-md py-space-sm rounded-lg bg-surface-container-high hover:bg-surface-bright text-on-surface font-label-md text-label-md font-semibold flex items-center gap-space-xs shadow-[0_2px_8px_rgba(0,0,0,0.3)] transition-all" id="btn-auto-sim">
-                                <span class="material-symbols-outlined text-tertiary text-[18px] animate-spin" id="auto-sim-icon" style="animation-duration: 4s;">autorenew</span>
-                                <span id="label-auto-sim">Auto-Simulación</span>
-                                <span class="px-1.5 py-0.5 rounded bg-surface-container-lowest text-tertiary font-label-sm text-label-sm font-mono tracking-wider">3000ms</span>
-                            </button>
-                            <!-- Botón Outline: Generar Pasajero Aleatorio -->
-                            <button class="px-space-md py-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container-high text-primary font-label-md text-label-md font-medium flex items-center gap-space-xs shadow-[0_2px_6px_rgba(0,0,0,0.2)] transition-all" id="btn-random-pax">
-                                <span class="material-symbols-outlined text-[16px]">person_add</span>
-                                <span>+ Pasajero Aleatorio</span>
-                                <span class="h-2 w-2 rounded-full bg-primary animate-ping"></span>
-                            </button>
-                        </div>
-                        <!-- Tijuana Live Clock & Sync Meta -->
-                        <div class="flex items-center gap-space-md bg-surface-container-lowest/80 px-space-md py-space-xs rounded-lg shadow-inner">
-                            <div class="flex items-center gap-space-xs">
-                                <span class="material-symbols-outlined text-secondary-fixed-dim text-[16px]">schedule</span>
-                                <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Tiempo Tijuana:</span>
-                                <span class="font-label-md text-label-md text-on-surface font-bold tracking-wider font-mono" id="tijuana-clock">--:--:-- PST</span>
-                            </div>
-                            <div class="h-4 w-px bg-surface-container-highest"></div>
-                            <div class="flex items-center gap-space-xs">
-                                <span class="h-2 w-2 rounded-full bg-tertiary"></span>
-                                <span class="font-label-sm text-label-sm text-tertiary font-medium">Cluster Erlang Sync</span>
+                <!-- Auto-Simulación Toggle -->
+                <button class="px-4 py-2.5 rounded-xl bg-dark-800 hover:bg-dark-700 text-slate-200 font-semibold text-sm flex items-center gap-2 border border-dark-700 transition-all active:scale-95" id="btn-auto-sim">
+                    <span class="material-symbols-outlined text-brand-emerald text-[18px]" id="auto-sim-icon">autorenew</span>
+                    <span id="label-auto-sim">Auto-Simulación</span>
+                    <span class="ml-1 px-1.5 py-0.5 rounded bg-dark-950 text-brand-emerald text-[11px] font-mono">3s</span>
+                </button>
+
+                <!-- Pasajero Aleatorio -->
+                <button class="px-4 py-2.5 rounded-xl bg-dark-800/60 hover:bg-dark-700 text-brand-cyan font-medium text-sm flex items-center gap-2 border border-dark-700/80 transition-all active:scale-95" id="btn-random-pax">
+                    <span class="material-symbols-outlined text-[18px]">person_add</span>
+                    <span>+ Pasajero Aleatorio</span>
+                </button>
+            </div>
+
+            <div class="flex items-center gap-4 text-xs font-mono text-slate-400 pr-2">
+                <span class="flex items-center gap-1.5">
+                    <span class="h-2 w-2 rounded-full bg-brand-emerald"></span>
+                    Erlang/OTP gen_server & Supervisor
+                </span>
+            </div>
+        </section>
+
+        <!-- 3. Main Dashboard Grid (Asymmetric 62% / 38% for maximum readability) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- LEFT COLUMN: 62% (8 Cols on xl) -> Map & Fleet Units -->
+            <div class="lg:col-span-7 xl:col-span-8 flex flex-col gap-8">
+                
+                <!-- Circuit Map (Clean Schematic with ZERO text overlap) -->
+                <section class="bg-dark-900/90 rounded-2xl p-6 border border-dark-800 glow-card flex flex-col gap-5">
+                    <div class="flex items-center justify-between flex-wrap gap-3">
+                        <div class="flex items-center gap-2.5">
+                            <span class="material-symbols-outlined text-brand-cyan text-[24px]">alt_route</span>
+                            <div>
+                                <h2 class="text-base font-bold text-white tracking-tight">Circuito Metropolitano Tijuana · Red Troncal Erlang</h2>
+                                <p class="text-xs text-slate-400 font-medium">Distancias geodésicas Haversine calculadas con recursión pura</p>
                             </div>
                         </div>
-                    </section>
-
-                    <!-- MAIN TWO-COLUMN ASYMMETRIC GRID (60% / 40%) -->
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg w-full items-start">
-                        <!-- LEFT COLUMN: 60% (7 Cols) -> Operaciones de Red & Flota OTP -->
-                        <div class="lg:col-span-7 flex flex-col gap-space-lg" id="mapa">
-                            <!-- SECTION A: Diagrama del Circuito Metropolitano de Tijuana -->
-                            <div class="bg-surface-container-low/95 backdrop-blur-md rounded-xl p-space-lg shadow-[0_8px_32px_rgba(0,0,0,0.4)] flex flex-col gap-space-md relative overflow-hidden">
-                                <div class="flex items-center justify-between flex-wrap gap-2">
-                                    <div class="flex items-center gap-space-xs">
-                                        <span class="material-symbols-outlined text-primary text-[22px]">route</span>
-                                        <h2 class="font-headline-md text-headline-md text-on-surface">Circuito Metropolitano Tijuana · Red Troncal OTP</h2>
-                                    </div>
-                                    <div class="flex items-center gap-space-sm font-label-sm text-label-sm">
-                                        <span class="flex items-center gap-1 text-primary"><span class="h-2 w-2 rounded-full bg-primary"></span>En Tránsito</span>
-                                        <span class="flex items-center gap-1 text-tertiary"><span class="h-2 w-2 rounded-full bg-tertiary"></span>En Parada</span>
-                                        <span class="flex items-center gap-1 text-on-surface-variant"><span class="h-2 w-2 rounded-full bg-surface-bright"></span>Interconexión</span>
-                                    </div>
-                                </div>
-
-                                <!-- Stylized Schematic SVG Transit Map -->
-                                <div class="relative w-full h-[320px] rounded-xl bg-surface-container-lowest/90 overflow-hidden p-space-md flex items-center justify-center shadow-inner">
-                                    <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#4cd7f6_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none"></div>
-                                    <svg class="w-full h-full relative z-10 select-none" viewBox="0 0 740 300">
-                                        <defs>
-                                            <linearGradient id="routeGrad" x1="0%" x2="100%" y1="0%" y2="100%">
-                                                <stop offset="0%" stop-color="#4cd7f6" stop-opacity="0.8"></stop>
-                                                <stop offset="50%" stop-color="#c0c1ff" stop-opacity="0.7"></stop>
-                                                <stop offset="100%" stop-color="#4edea3" stop-opacity="0.9"></stop>
-                                            </linearGradient>
-                                            <filter height="140%" id="cyanGlow" width="140%" x="-20%" y="-20%">
-                                                <feGaussianBlur result="blur" stdDeviation="3"></feGaussianBlur>
-                                                <feComposite in="SourceGraphic" in2="blur" operator="over"></feComposite>
-                                            </filter>
-                                        </defs>
-
-                                        <!-- Interconnecting Transit Arteries -->
-                                        <path d="M 80 180 C 130 90, 200 70, 260 85 S 390 190, 480 170 S 610 90, 660 140" fill="none" stroke="#252a39" stroke-linecap="round" stroke-width="8"></path>
-                                        <path d="M 80 180 C 130 90, 200 70, 260 85 S 390 190, 480 170 S 610 90, 660 140" fill="none" filter="url(#cyanGlow)" stroke="url(#routeGrad)" stroke-dasharray="6 4" stroke-linecap="round" stroke-width="3.5"></path>
-                                        <path d="M 260 85 L 360 40 L 480 170" fill="none" stroke="#343948" stroke-dasharray="4 4" stroke-width="2"></path>
-                                        <path d="M 80 180 L 180 250 L 480 170" fill="none" stroke="#343948" stroke-dasharray="4 4" stroke-width="2"></path>
-
-                                        <!-- NODE 1: Playas de Tijuana -->
-                                        <g transform="translate(80, 180)">
-                                            <circle fill="#161b2a" r="14" stroke="#4cd7f6" stroke-width="2"></circle>
-                                            <circle fill="#4cd7f6" r="6"></circle>
-                                            <text fill="#dee2f6" font-family="Plus Jakarta Sans" font-size="11" font-weight="600" x="-40" y="-20">Playas de Tijuana</text>
-                                            <text fill="#bcc9cd" font-family="JetBrains Mono" font-size="9" x="-40" y="-8">32.5262°N, 117.1219°W</text>
-                                            <rect fill="#1a1f2e" height="18" rx="9" stroke="#4edea3" stroke-width="1" width="76" x="-38" y="20"></rect>
-                                            <text fill="#4edea3" font-family="JetBrains Mono" font-size="8.5" font-weight="bold" id="badge-map-playas" text-anchor="middle" x="0" y="32">Parada</text>
-                                        </g>
-
-                                        <!-- NODE 2: Centro Revolución -->
-                                        <g transform="translate(220, 80)">
-                                            <circle fill="#161b2a" r="12" stroke="#4cd7f6" stroke-width="2"></circle>
-                                            <circle class="animate-pulse" fill="#4cd7f6" r="5"></circle>
-                                            <text fill="#dee2f6" font-family="Plus Jakarta Sans" font-size="11" font-weight="600" x="-45" y="-18">Centro Revolución</text>
-                                            <text fill="#bcc9cd" font-family="JetBrains Mono" font-size="9" x="-45" y="-6">32.5332°N · Centro</text>
-                                            <rect fill="#1a1f2e" height="18" rx="9" stroke="#4cd7f6" stroke-width="1" width="76" x="-38" y="16"></rect>
-                                            <text fill="#4cd7f6" font-family="JetBrains Mono" font-size="8.5" font-weight="bold" id="badge-map-centro" text-anchor="middle" x="0" y="28">Parada</text>
-                                        </g>
-
-                                        <!-- NODE 3: Zona Río CECUT -->
-                                        <g transform="translate(350, 120)">
-                                            <circle fill="#06b6d4" fill-opacity="0.2" r="15" stroke="#4cd7f6" stroke-width="2"></circle>
-                                            <circle fill="#4cd7f6" r="7"></circle>
-                                            <text fill="#dee2f6" font-family="Plus Jakarta Sans" font-size="11" font-weight="700" x="-35" y="-22">Zona Río CECUT</text>
-                                            <text fill="#bcc9cd" font-family="JetBrains Mono" font-size="9" x="-35" y="-10">Transbordo Hub Central</text>
-                                            <rect fill="#1a1f2e" height="20" rx="10" stroke="#c0c1ff" stroke-width="1" width="86" x="-43" y="20"></rect>
-                                            <text fill="#c0c1ff" font-family="JetBrains Mono" font-size="9" font-weight="bold" id="badge-map-zona_rio" text-anchor="middle" x="0" y="33">Hub Central</text>
-                                        </g>
-
-                                        <!-- NODE 4: Otay TecNM (Campus Principal) -->
-                                        <g transform="translate(480, 170)">
-                                            <circle fill="#1bbd85" fill-opacity="0.2" r="16" stroke="#4edea3" stroke-width="2.5"></circle>
-                                            <circle fill="#4edea3" r="8"></circle>
-                                            <text fill="#dee2f6" font-family="Plus Jakarta Sans" font-size="12" font-weight="700" x="-30" y="-24">Otay TecNM (Campus)</text>
-                                            <text fill="#4edea3" font-family="JetBrains Mono" font-size="9" x="-30" y="-11">32.5323°N · Nodo Base</text>
-                                            <rect fill="#1a1f2e" height="20" rx="10" stroke="#4edea3" stroke-width="1" width="86" x="-43" y="22"></rect>
-                                            <text fill="#4edea3" font-family="JetBrains Mono" font-size="9" font-weight="bold" id="badge-map-otay" text-anchor="middle" x="0" y="35">TecNM</text>
-                                        </g>
-
-                                        <!-- NODE 5: Central Alamar -->
-                                        <g transform="translate(560, 80)">
-                                            <circle fill="#161b2a" r="10" stroke="#bcc9cd" stroke-width="1.5"></circle>
-                                            <circle fill="#bcc9cd" r="4"></circle>
-                                            <text fill="#dee2f6" font-family="Plus Jakarta Sans" font-size="10.5" font-weight="500" x="-15" y="-14">Central Alamar</text>
-                                            <text fill="#bcc9cd" font-family="JetBrains Mono" font-size="8.5" x="-15" y="-3">32.5085°N Terminal</text>
-                                            <rect fill="#1a1f2e" height="18" rx="9" stroke="#bcc9cd" stroke-width="1" width="76" x="-38" y="16"></rect>
-                                            <text fill="#bcc9cd" font-family="JetBrains Mono" font-size="8.5" id="badge-map-central_camionera" text-anchor="middle" x="0" y="28">Terminal</text>
-                                        </g>
-
-                                        <!-- NODE 6: Parque Ind. El Florido -->
-                                        <g transform="translate(660, 140)">
-                                            <circle fill="#161b2a" r="13" stroke="#4cd7f6" stroke-width="2"></circle>
-                                            <circle fill="#4cd7f6" r="5"></circle>
-                                            <text fill="#dee2f6" font-family="Plus Jakarta Sans" font-size="11" font-weight="600" x="-70" y="-18">Parque El Florido</text>
-                                            <text fill="#bcc9cd" font-family="JetBrains Mono" font-size="9" x="-70" y="-6">Terminal Este · 32.4491°N</text>
-                                            <rect fill="#1a1f2e" height="18" rx="9" stroke="#869397" stroke-width="1" width="76" x="-38" y="18"></rect>
-                                            <text fill="#bcc9cd" font-family="JetBrains Mono" font-size="8.5" id="badge-map-el_florido" text-anchor="middle" x="0" y="30">Maquila</text>
-                                        </g>
-                                    </svg>
-
-                                    <!-- Bottom Floating Map Metrics -->
-                                    <div class="absolute bottom-3 left-4 right-4 flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm bg-surface-container-low/85 backdrop-blur-md px-space-md py-1.5 rounded-lg shadow-sm">
-                                        <span class="flex items-center gap-1.5"><span class="h-2 w-2 rounded-full bg-primary animate-ping"></span>Corredor Insurgentes & Vía Rápida monitoreado</span>
-                                        <span class="text-on-surface font-mono">6 Nodos Troncales Conectados · 0 Cuellos de Botella</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- SECTION B: Panel de Flota (gen_server per Unit) -->
-                            <div class="flex flex-col gap-space-md" id="supervisores">
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center gap-space-xs">
-                                        <span class="material-symbols-outlined text-tertiary text-[20px]">directions_bus</span>
-                                        <h2 class="font-headline-md text-headline-md text-on-surface">Flota Supervisada (Procesos Erlang Actores)</h2>
-                                    </div>
-                                    <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Supervisión: <span class="text-tertiary font-bold font-mono">logistica_sup:one_for_one</span></span>
-                                </div>
-
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter" id="fleet-units-grid">
-                                    <!-- Las 4 tarjetas de unidades vehiculares se renderizan dinámicamente conectadas al backend Erlang -->
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- RIGHT COLUMN: 40% (5 Cols) -> Interacción y Telemetría OTP BEAM -->
-                        <div class="lg:col-span-5 flex flex-col gap-space-lg" id="despacho">
-                            <!-- MODULE A: Despacho Inteligente de Pasajeros (Erlang Pattern Match) -->
-                            <div class="bg-surface-container-low/95 backdrop-blur-md rounded-xl p-space-lg shadow-[0_8px_32px_rgba(0,0,0,0.4)] flex flex-col gap-space-md">
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center gap-space-xs">
-                                        <span class="material-symbols-outlined text-primary text-[20px]">person_pin_circle</span>
-                                        <h3 class="font-headline-md text-headline-md text-on-surface">Despacho de Pasajeros Concurrentes</h3>
-                                    </div>
-                                    <span class="px-2 py-0.5 rounded bg-surface-container-high text-primary font-label-sm text-label-sm font-mono">OTP Pattern Match</span>
-                                </div>
-                                <p class="font-body-sm text-body-sm text-on-surface-variant -mt-1">
-                                    Asignación en tiempo de ejecución basada en algoritmos funcionales libres de mutación de estado.
-                                </p>
-
-                                <!-- Interactive Form -->
-                                <form class="flex flex-col gap-space-sm" id="passenger-form">
-                                    <div>
-                                        <label class="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Nombre del Pasajero</label>
-                                        <div class="relative">
-                                            <input class="w-full bg-surface-container-lowest text-on-surface px-space-md py-space-sm rounded-lg font-body-md text-body-md focus:outline-none focus:ring-1 focus:ring-primary shadow-inner" id="pax-name" placeholder="Ej: Roberto Ramos" required="" type="text" value="Valeria Gómez"/>
-                                            <span class="material-symbols-outlined absolute right-3 top-2.5 text-on-surface-variant text-[18px]">badge</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="grid grid-cols-2 gap-space-sm">
-                                        <div>
-                                            <label class="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Parada Origen</label>
-                                            <select class="w-full bg-surface-container-lowest text-on-surface px-space-sm py-space-sm rounded-lg font-body-md text-body-md focus:outline-none focus:ring-1 focus:ring-primary shadow-inner" id="pax-origin">
-                                                <option value="otay">Otay TecNM</option>
-                                                <option value="central_camionera">Central Alamar</option>
-                                                <option value="zona_rio">Zona Río CECUT</option>
-                                                <option value="centro">Centro Revolución</option>
-                                                <option value="el_florido">Parque El Florido</option>
-                                                <option value="playas">Playas de Tijuana</option>
-                                            </select>
-                                        </div>
-                                        <div>
-                                            <label class="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Parada Destino</label>
-                                            <select class="w-full bg-surface-container-lowest text-on-surface px-space-sm py-space-sm rounded-lg font-body-md text-body-md focus:outline-none focus:ring-1 focus:ring-primary shadow-inner" id="pax-destination">
-                                                <option value="centro" selected>Centro Revolución</option>
-                                                <option value="zona_rio">Zona Río CECUT</option>
-                                                <option value="playas">Playas de Tijuana</option>
-                                                <option value="otay">Otay TecNM</option>
-                                                <option value="central_camionera">Central Alamar</option>
-                                                <option value="el_florido">Parque El Florido</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <!-- Pre-cálculo de ruta funcional -->
-                                    <div class="p-space-sm rounded-lg bg-surface-container-lowest/80 flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm" id="calc-preview">
-                                        <span class="flex items-center gap-1">
-                                            <span class="material-symbols-outlined text-[14px] text-tertiary">straighten</span> Distancia Haversine: <strong class="text-on-surface font-mono" id="preview-dist">7.01 km</strong>
-                                        </span>
-                                        <span>ETA Estimado: <strong class="text-primary font-mono" id="preview-eta">~16 min</strong></span>
-                                    </div>
-
-                                    <button class="w-full py-space-sm px-space-md rounded-lg bg-gradient-to-r from-secondary-container via-primary-container to-primary hover:opacity-95 text-on-primary font-label-md text-label-md font-bold tracking-wide flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all" id="btn-submit-pax" type="submit">
-                                        <span class="material-symbols-outlined text-[18px]">send</span>
-                                        <span>Asignar Pasajero al Sistema OTP</span>
-                                    </button>
-                                </form>
-
-                                <!-- Match Result Card (Visible Success State) -->
-                                <div class="p-space-md rounded-xl bg-surface-container-highest/60 flex flex-col gap-space-xs shadow-sm" id="dispatch-result-box" style="display: none;">
-                                    <div class="flex items-center justify-between">
-                                        <div class="flex items-center gap-space-xs">
-                                            <span class="material-symbols-outlined text-tertiary text-[18px]">verified</span>
-                                            <span class="font-label-md text-label-md text-tertiary font-bold" id="res-status-title">¡Unidad Óptima Asignada!</span>
-                                        </div>
-                                        <span class="font-label-sm text-label-sm text-primary font-mono" id="res-ticket-id">Ticket #1001</span>
-                                    </div>
-                                    <p class="font-body-sm text-body-sm text-on-surface" id="res-desc">
-                                        Se despachó a <strong class="text-primary font-semibold" id="res-pax-name">Valeria Gómez</strong> en <strong class="text-tertiary font-semibold" id="res-unit-name">Van Sprinter 01</strong>. Asiento reservado en buzón atómico.
-                                    </p>
-                                    <div class="flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant pt-1">
-                                        <span id="res-meta-time">Tiempo de Espera: <strong>4 mins</strong></span>
-                                        <span class="text-tertiary font-mono">gen_server:call ok</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- MODULE B: Consola de Telemetría OTP (Terminal Hacker / BEAM Engine) -->
-                            <div class="bg-surface-container-lowest/95 backdrop-blur-md rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.6)] flex flex-col overflow-hidden" id="telemetria">
-                                <!-- Terminal Window Header -->
-                                <div class="bg-surface-container-low px-space-md py-space-xs flex items-center justify-between">
-                                    <div class="flex items-center gap-1.5">
-                                        <span class="h-3 w-3 rounded-full bg-error-container block"></span>
-                                        <span class="h-3 w-3 rounded-full bg-secondary block"></span>
-                                        <span class="h-3 w-3 rounded-full bg-tertiary block"></span>
-                                    </div>
-                                    <span class="font-label-sm text-label-sm text-on-surface-variant font-mono">beam_node@transtijuana.mx · supervisor_events.log</span>
-                                    <div class="flex items-center gap-1 text-on-surface-variant cursor-pointer" onclick="document.getElementById('terminal-feed').innerHTML='';" title="Limpiar">
-                                        <span class="material-symbols-outlined text-[14px]">cleaning_services</span>
-                                    </div>
-                                </div>
-
-                                <!-- Log Content Feed -->
-                                <div class="p-space-md font-label-sm text-label-sm font-mono flex flex-col gap-2 h-[260px] overflow-y-auto leading-relaxed" id="terminal-feed">
-                                    <!-- Entradas del log inyectadas en vivo desde la bitácora Erlang -->
-                                </div>
-
-                                <!-- Terminal Bottom Status Bar -->
-                                <div class="bg-surface-container-high/60 px-space-md py-1.5 flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm font-mono">
-                                    <span class="flex items-center gap-1.5"><span class="h-1.5 w-1.5 rounded-full bg-tertiary"></span>IO Event Tracing Activo</span>
-                                    <span class="text-primary">Erlang/OTP BEAM</span>
-                                </div>
-                            </div>
+                        <div class="flex items-center gap-4 text-xs font-mono">
+                            <span class="flex items-center gap-1.5 text-slate-300">
+                                <span class="h-2.5 w-2.5 rounded-full bg-brand-cyan shadow-sm shadow-brand-cyan"></span>En Parada
+                            </span>
+                            <span class="flex items-center gap-1.5 text-slate-400">
+                                <span class="h-2 w-2 rounded-full bg-dark-700"></span>Interconexión
+                            </span>
                         </div>
                     </div>
 
-                    <!-- TOAST NOTIFICATION FLOTANTE (Erlang Supervisor Event) -->
-                    <div class="fixed bottom-6 right-6 z-50 max-w-md bg-surface-container-high/95 backdrop-blur-xl rounded-xl p-space-md shadow-[0_8px_32px_rgba(0,0,0,0.6)] flex items-start gap-space-md transition-all duration-300 transform opacity-0 pointer-events-none" id="otp-toast">
-                        <div class="p-2 rounded-lg bg-tertiary-container/30 text-tertiary flex items-center justify-center shrink-0">
-                            <span class="material-symbols-outlined text-[20px] animate-spin" style="animation-duration: 3s;">sync</span>
+                    <!-- Clean Subway Style Map (Spacious, high-contrast, zero overlap) -->
+                    <div class="w-full bg-dark-950 rounded-xl p-6 border border-dark-800/80 shadow-inner overflow-x-auto">
+                        <div class="min-w-[800px]">
+                            <!-- SVG Subway Graphic -->
+                            <svg class="w-full h-[180px]" viewBox="0 0 940 180" fill="none">
+                                <defs>
+                                    <linearGradient id="trackGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%" stop-color="#06b6d4"></stop>
+                                        <stop offset="40%" stop-color="#6366f1"></stop>
+                                        <stop offset="70%" stop-color="#10b981"></stop>
+                                        <stop offset="100%" stop-color="#06b6d4"></stop>
+                                    </linearGradient>
+                                </defs>
+
+                                <!-- Main Trunk Track Line -->
+                                <path d="M 80 90 L 230 90 L 380 90 L 530 90 L 680 90 L 840 90" stroke="#1e293b" stroke-width="10" stroke-linecap="round"></path>
+                                <path d="M 80 90 L 230 90 L 380 90 L 530 90 L 680 90 L 840 90" stroke="url(#trackGrad)" stroke-width="4" stroke-dasharray="6 4" stroke-linecap="round"></path>
+
+                                <!-- STATION 1: Playas -->
+                                <g transform="translate(80, 90)">
+                                    <circle id="circle-map-playas" r="12" fill="#0f172a" stroke="#06b6d4" stroke-width="3"></circle>
+                                    <circle r="4" fill="#06b6d4"></circle>
+                                    <!-- Label Above -->
+                                    <text x="0" y="-24" text-anchor="middle" fill="#f8fafc" font-family="Plus Jakarta Sans" font-size="12" font-weight="700">Playas de Tijuana</text>
+                                    <text x="0" y="-12" text-anchor="middle" fill="#94a3b8" font-family="JetBrains Mono" font-size="9">32.5262°N</text>
+                                    <!-- Badge Below -->
+                                    <rect id="rect-map-playas" x="-38" y="20" width="76" height="20" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"></rect>
+                                    <text x="0" y="34" text-anchor="middle" fill="#06b6d4" font-family="JetBrains Mono" font-size="9.5" font-weight="700" id="badge-map-playas">Sin van</text>
+                                </g>
+
+                                <!-- STATION 2: Centro Revolución -->
+                                <g transform="translate(230, 90)">
+                                    <circle id="circle-map-centro" r="12" fill="#0f172a" stroke="#06b6d4" stroke-width="3"></circle>
+                                    <circle r="4" fill="#06b6d4"></circle>
+                                    <!-- Label Above -->
+                                    <text x="0" y="-24" text-anchor="middle" fill="#f8fafc" font-family="Plus Jakarta Sans" font-size="12" font-weight="700">Centro Revolución</text>
+                                    <text x="0" y="-12" text-anchor="middle" fill="#94a3b8" font-family="JetBrains Mono" font-size="9">32.5332°N</text>
+                                    <!-- Badge Below -->
+                                    <rect id="rect-map-centro" x="-38" y="20" width="76" height="20" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"></rect>
+                                    <text x="0" y="34" text-anchor="middle" fill="#06b6d4" font-family="JetBrains Mono" font-size="9.5" font-weight="700" id="badge-map-centro">Sin van</text>
+                                </g>
+
+                                <!-- STATION 3: Zona Río CECUT -->
+                                <g transform="translate(380, 90)">
+                                    <circle id="circle-map-zona_rio" r="14" fill="#0f172a" stroke="#6366f1" stroke-width="3.5"></circle>
+                                    <circle r="5" fill="#6366f1"></circle>
+                                    <!-- Label Above -->
+                                    <text x="0" y="-24" text-anchor="middle" fill="#f8fafc" font-family="Plus Jakarta Sans" font-size="12" font-weight="700">Zona Río CECUT</text>
+                                    <text x="0" y="-12" text-anchor="middle" fill="#94a3b8" font-family="JetBrains Mono" font-size="9">Hub Transbordo</text>
+                                    <!-- Badge Below -->
+                                    <rect id="rect-map-zona_rio" x="-42" y="20" width="84" height="20" rx="6" fill="#1e293b" stroke="#6366f1" stroke-width="1"></rect>
+                                    <text x="0" y="34" text-anchor="middle" fill="#c0c1ff" font-family="JetBrains Mono" font-size="9.5" font-weight="700" id="badge-map-zona_rio">Sin van</text>
+                                </g>
+
+                                <!-- STATION 4: Otay TecNM -->
+                                <g transform="translate(530, 90)">
+                                    <circle id="circle-map-otay" r="15" fill="#0f172a" stroke="#10b981" stroke-width="3.5"></circle>
+                                    <circle r="5" fill="#10b981"></circle>
+                                    <!-- Label Above -->
+                                    <text x="0" y="-24" text-anchor="middle" fill="#f8fafc" font-family="Plus Jakarta Sans" font-size="12" font-weight="800">Otay TecNM</text>
+                                    <text x="0" y="-12" text-anchor="middle" fill="#10b981" font-family="JetBrains Mono" font-size="9">Campus Base</text>
+                                    <!-- Badge Below -->
+                                    <rect id="rect-map-otay" x="-42" y="20" width="84" height="20" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1"></rect>
+                                    <text x="0" y="34" text-anchor="middle" fill="#10b981" font-family="JetBrains Mono" font-size="9.5" font-weight="700" id="badge-map-otay">Sin van</text>
+                                </g>
+
+                                <!-- STATION 5: Central Alamar -->
+                                <g transform="translate(680, 90)">
+                                    <circle id="circle-map-central_camionera" r="12" fill="#0f172a" stroke="#94a3b8" stroke-width="3"></circle>
+                                    <circle r="4" fill="#94a3b8"></circle>
+                                    <!-- Label Above -->
+                                    <text x="0" y="-24" text-anchor="middle" fill="#f8fafc" font-family="Plus Jakarta Sans" font-size="12" font-weight="700">Central Alamar</text>
+                                    <text x="0" y="-12" text-anchor="middle" fill="#94a3b8" font-family="JetBrains Mono" font-size="9">Terminal 32.5085°N</text>
+                                    <!-- Badge Below -->
+                                    <rect id="rect-map-central_camionera" x="-38" y="20" width="76" height="20" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"></rect>
+                                    <text x="0" y="34" text-anchor="middle" fill="#94a3b8" font-family="JetBrains Mono" font-size="9.5" font-weight="700" id="badge-map-central_camionera">Sin van</text>
+                                </g>
+
+                                <!-- STATION 6: Parque El Florido -->
+                                <g transform="translate(840, 90)">
+                                    <circle id="circle-map-el_florido" r="12" fill="#0f172a" stroke="#06b6d4" stroke-width="3"></circle>
+                                    <circle r="4" fill="#06b6d4"></circle>
+                                    <!-- Label Above -->
+                                    <text x="0" y="-24" text-anchor="middle" fill="#f8fafc" font-family="Plus Jakarta Sans" font-size="12" font-weight="700">Parque El Florido</text>
+                                    <text x="0" y="-12" text-anchor="middle" fill="#94a3b8" font-family="JetBrains Mono" font-size="9">Zona Industrial</text>
+                                    <!-- Badge Below -->
+                                    <rect id="rect-map-el_florido" x="-38" y="20" width="76" height="20" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"></rect>
+                                    <text x="0" y="34" text-anchor="middle" fill="#06b6d4" font-family="JetBrains Mono" font-size="9.5" font-weight="700" id="badge-map-el_florido">Sin van</text>
+                                </g>
+                            </svg>
                         </div>
-                        <div class="flex flex-col gap-0.5">
-                            <div class="flex items-center justify-between gap-space-md">
-                                <span class="font-label-md text-label-md text-tertiary font-bold tracking-tight" id="toast-title">Erlang Supervisor: Proceso Recuperado</span>
-                                <span class="font-label-sm text-label-sm text-on-surface-variant font-mono">&lt;150ms failover</span>
+                    </div>
+                </section>
+
+                <!-- Fleet Units Grid (2x2 Spacious, Clean Cards) -->
+                <section class="flex flex-col gap-5">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-brand-emerald text-[22px]">directions_bus</span>
+                            <h2 class="text-base font-bold text-white tracking-tight">Flota de Unidades (Procesos Erlang gen_server)</h2>
+                        </div>
+                        <span class="text-xs font-mono text-slate-400">Supervisión: <strong class="text-brand-emerald">logistica_sup</strong></span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5" id="fleet-units-grid">
+                        <!-- Las 4 tarjetas de unidades vehiculares renderizadas dinámicamente -->
+                    </div>
+                </section>
+            </div>
+
+            <!-- RIGHT COLUMN: 38% (4 Cols on xl) -> Dispatch Form & Live Terminal -->
+            <div class="lg:col-span-5 xl:col-span-4 flex flex-col gap-8">
+                
+                <!-- Dispatch Form (Clean & Modern) -->
+                <section class="bg-dark-900/90 rounded-2xl p-6 border border-dark-800 glow-card flex flex-col gap-5">
+                    <div class="flex items-center justify-between border-b border-dark-800 pb-4">
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-brand-cyan text-[22px]">person_pin_circle</span>
+                            <h3 class="text-base font-bold text-white tracking-tight">Despachar Pasajero</h3>
+                        </div>
+                        <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-dark-800 text-brand-cyan border border-dark-700">
+                            OTP Match
+                        </span>
+                    </div>
+
+                    <form class="flex flex-col gap-4" id="passenger-form">
+                        <div class="flex flex-col gap-1.5">
+                            <label class="text-xs font-semibold text-slate-300">Nombre del Pasajero / Estudiante</label>
+                            <input class="w-full bg-dark-950 border border-dark-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-brand-cyan font-medium placeholder-slate-500 transition-colors" id="pax-name" placeholder="Ej. Ana Beltrán" required="" type="text" value="Valeria Gómez"/>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-xs font-semibold text-slate-300">Origen</label>
+                                <select class="w-full bg-dark-950 border border-dark-800 rounded-xl px-3 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-brand-cyan font-medium" id="pax-origin">
+                                    <option value="otay">Otay TecNM</option>
+                                    <option value="central_camionera">Central Alamar</option>
+                                    <option value="zona_rio">Zona Río CECUT</option>
+                                    <option value="centro">Centro Revolución</option>
+                                    <option value="el_florido">Parque El Florido</option>
+                                    <option value="playas">Playas de Tijuana</option>
+                                </select>
                             </div>
-                            <p class="font-body-sm text-body-sm text-on-surface-variant" id="toast-desc">
-                                El proceso vehicular fue relanzado bajo estrategia <span class="text-tertiary font-mono">one_for_one</span>. Buzón de mensajes y aforo sincronizados sin pérdida de estado.
-                            </p>
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-xs font-semibold text-slate-300">Destino</label>
+                                <select class="w-full bg-dark-950 border border-dark-800 rounded-xl px-3 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-brand-cyan font-medium" id="pax-destination">
+                                    <option value="centro" selected>Centro Revolución</option>
+                                    <option value="zona_rio">Zona Río CECUT</option>
+                                    <option value="playas">Playas de Tijuana</option>
+                                    <option value="otay">Otay TecNM</option>
+                                    <option value="central_camionera">Central Alamar</option>
+                                    <option value="el_florido">Parque El Florido</option>
+                                </select>
+                            </div>
                         </div>
-                        <button class="text-on-surface-variant hover:text-on-surface" onclick="document.getElementById('otp-toast').classList.add('opacity-0', 'pointer-events-none')">
-                            <span class="material-symbols-outlined text-[16px]">close</span>
+
+                        <!-- Live Haversine Estimation Strip -->
+                        <div class="flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-dark-950 border border-dark-800 text-xs font-mono">
+                            <span class="flex items-center gap-1.5 text-slate-300">
+                                <span class="material-symbols-outlined text-brand-cyan text-[16px]">straighten</span>
+                                Distancia: <strong class="text-brand-cyan font-bold" id="calc-dist">7.01 km</strong>
+                            </span>
+                            <span class="flex items-center gap-1.5 text-slate-300">
+                                <span class="material-symbols-outlined text-brand-emerald text-[16px]">schedule</span>
+                                ETA: <strong class="text-brand-emerald font-bold" id="calc-eta">~16 min</strong>
+                            </span>
+                        </div>
+
+                        <button class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-brand-cyan to-brand-indigo hover:opacity-95 text-dark-950 font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-brand-cyan/20 transition-all active:scale-95 mt-1" id="btn-submit-pax" type="submit">
+                            <span class="material-symbols-outlined text-[18px]">send</span>
+                            <span>Asignar Unidad Óptima</span>
+                        </button>
+                    </form>
+
+                    <!-- Dispatch Confirmation Result Card -->
+                    <div class="p-4 rounded-xl bg-dark-950 border border-brand-emerald/30 flex flex-col gap-2 transition-all" id="dispatch-result-box" style="display: none;">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-brand-emerald flex items-center gap-1.5" id="res-status-title">
+                                <span class="material-symbols-outlined text-[16px]">verified</span> ¡Unidad Asignada!
+                            </span>
+                            <span class="text-[11px] font-mono font-bold text-brand-cyan" id="res-ticket-id">Ticket #1001</span>
+                        </div>
+                        <p class="text-xs text-slate-300 leading-relaxed" id="res-desc">
+                            Se despachó a <strong class="text-white font-semibold" id="res-pax-name">Valeria</strong> en <strong class="text-brand-cyan font-semibold" id="res-unit-name">Van Sprinter 01</strong>.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Live Terminal Feed (Erlang OTP Log Tracing) -->
+                <section class="bg-dark-900/90 rounded-2xl border border-dark-800 glow-card flex flex-col overflow-hidden">
+                    <div class="bg-dark-950 px-4 py-3 border-b border-dark-800 flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <span class="h-2.5 w-2.5 rounded-full bg-rose-500/80"></span>
+                            <span class="h-2.5 w-2.5 rounded-full bg-amber-500/80"></span>
+                            <span class="h-2.5 w-2.5 rounded-full bg-emerald-500/80"></span>
+                            <span class="text-xs font-mono text-slate-400 font-semibold ml-2">telemetry_events.log</span>
+                        </div>
+                        <button class="text-slate-400 hover:text-white text-xs font-mono" onclick="document.getElementById('terminal-feed').innerHTML='';" title="Limpiar Terminal">
+                            <span class="material-symbols-outlined text-[16px]">cleaning_services</span>
                         </button>
                     </div>
 
-                </div>
+                    <div class="p-4 font-mono text-xs flex flex-col gap-2 h-[290px] overflow-y-auto leading-relaxed terminal-scroll bg-[#060911]" id="terminal-feed">
+                        <!-- Eventos inyectados dinámicamente -->
+                    </div>
+
+                    <div class="bg-dark-950 px-4 py-2 border-t border-dark-800 flex items-center justify-between text-[11px] font-mono text-slate-500">
+                        <span class="flex items-center gap-1.5"><span class="h-1.5 w-1.5 rounded-full bg-brand-emerald"></span>BEAM Tracing Activo</span>
+                        <span class="text-brand-cyan">transtijuana@localhost</span>
+                    </div>
+                </section>
+
             </div>
-        </main>
+
+        </div>
+
+    </main>
+
+    <!-- Floating Supervisor Toast Alert -->
+    <div class="fixed bottom-6 right-6 z-50 max-w-md bg-dark-900/95 backdrop-blur-xl border border-dark-700 rounded-2xl p-4 shadow-2xl shadow-black/80 flex items-start gap-3.5 transition-all duration-300 transform opacity-0 pointer-events-none" id="otp-toast">
+        <div class="p-2 rounded-xl bg-brand-emerald/15 text-brand-emerald shrink-0">
+            <span class="material-symbols-outlined text-[20px]">sync</span>
+        </div>
+        <div class="flex flex-col gap-0.5">
+            <div class="flex items-center justify-between gap-4">
+                <span class="text-xs font-bold text-brand-emerald font-mono tracking-tight" id="toast-title">Erlang Supervisor: Proceso Recuperado</span>
+                <span class="text-[10px] text-slate-500 font-mono">&lt;150ms</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-normal" id="toast-desc">
+                El proceso vehicular fue relanzado bajo estrategia <span class="text-brand-emerald font-mono">one_for_one</span>.
+            </p>
+        </div>
+        <button class="text-slate-400 hover:text-white ml-2" onclick="document.getElementById('otp-toast').classList.add('opacity-0', 'pointer-events-none')">
+            <span class="material-symbols-outlined text-[16px]">close</span>
+        </button>
     </div>
 
-    <!-- Integración con el Backend Erlang/OTP -->
+    <!-- Live Client Integration with Erlang Backend -->
     <script>
         const API_BASE = window.location.origin;
         let logLineasVistas = new Set();
@@ -658,7 +562,6 @@
             playas: "Playas de Tijuana"
         };
 
-        // Reloj Tijuana
         function updateTijuanaTime() {
             const now = new Date();
             const timeStr = now.toLocaleTimeString('es-MX', { timeZone: 'America/Tijuana', hour12: false });
@@ -668,7 +571,6 @@
         setInterval(updateTijuanaTime, 1000);
         updateTijuanaTime();
 
-        // Polling en vivo a Erlang/OTP
         async function syncErlangState() {
             try {
                 const res = await fetch(`${API_BASE}/api/estado`);
@@ -712,21 +614,86 @@
             });
             for (let [pId, name] of Object.entries(PARADAS_NOMBRES)) {
                 const el = document.getElementById(`badge-map-${pId}`);
+                const rect = document.getElementById(`rect-map-${pId}`);
+                const circle = document.getElementById(`circle-map-${pId}`);
                 if (el) {
                     if (counts[pId]) {
                         el.textContent = `${counts[pId]} Van(es)`;
+                        el.setAttribute('fill', '#10b981');
+                        if (rect) {
+                            rect.setAttribute('fill', '#064e3b');
+                            rect.setAttribute('stroke', '#10b981');
+                        }
+                        if (circle) {
+                            circle.setAttribute('stroke', '#10b981');
+                            circle.setAttribute('stroke-width', '4');
+                        }
                     } else {
                         el.textContent = "Sin van";
+                        el.setAttribute('fill', '#64748b');
+                        if (rect) {
+                            rect.setAttribute('fill', '#1e293b');
+                            rect.setAttribute('stroke', '#334155');
+                        }
+                        if (circle) {
+                            circle.setAttribute('stroke', pId === 'otay' ? '#10b981' : (pId === 'zona_rio' ? '#6366f1' : '#06b6d4'));
+                            circle.setAttribute('stroke-width', '3');
+                        }
                     }
                 }
             }
         }
 
+        const COORDENADAS = {
+            otay:              { lat: 32.5323, lon: -116.9634 },
+            central_camionera: { lat: 32.5085, lon: -116.9622 },
+            zona_rio:          { lat: 32.5284, lon: -117.0228 },
+            centro:            { lat: 32.5332, lon: -117.0382 },
+            el_florido:        { lat: 32.4491, lon: -116.8225 },
+            playas:            { lat: 32.5262, lon: -117.1219 }
+        };
+
+        function calcularDistanciaHaversine(lat1, lon1, lat2, lon2) {
+            const R = 6371.0;
+            const dLat = (lat2 - lat1) * Math.PI / 180.0;
+            const dLon = (lon2 - lon1) * Math.PI / 180.0;
+            const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                      Math.cos(lat1 * Math.PI / 180.0) * Math.cos(lat2 * Math.PI / 180.0) *
+                      Math.sin(dLon/2) * Math.sin(dLon/2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            return R * c;
+        }
+
+        function updateRoutePreview() {
+            const orig = document.getElementById('pax-origin').value;
+            const dest = document.getElementById('pax-destination').value;
+            const distEl = document.getElementById('calc-dist');
+            const etaEl = document.getElementById('calc-eta');
+            if (!distEl || !etaEl) return;
+
+            if (orig === dest) {
+                distEl.textContent = "0.00 km";
+                etaEl.textContent = "0 min";
+                return;
+            }
+
+            const c1 = COORDENADAS[orig];
+            const c2 = COORDENADAS[dest];
+            if (c1 && c2) {
+                const dist = calcularDistanciaHaversine(c1.lat, c1.lon, c2.lat, c2.lon);
+                const minutos = Math.max(3, Math.round((dist / 30.0) * 60.0) + 2);
+                distEl.textContent = `${dist.toFixed(2)} km`;
+                etaEl.textContent = `~${minutos} min`;
+            }
+        }
+        document.getElementById('pax-origin').addEventListener('change', updateRoutePreview);
+        document.getElementById('pax-destination').addEventListener('change', updateRoutePreview);
+        updateRoutePreview();
+
         function renderUnits(unidades) {
             const container = document.getElementById('fleet-units-grid');
             if (!container || !unidades) return;
 
-            // Micro progress bars
             unidades.forEach((u, i) => {
                 const el = document.getElementById(`micro-u${i+1}`);
                 if (el) {
@@ -741,52 +708,54 @@
                 const pct = Math.round((count / max) * 100);
                 const paradaNombre = PARADAS_NOMBRES[u.parada_actual] || u.parada_actual;
 
-                let badgeColor = "bg-primary/20 text-primary";
-                if (u.estado === 'en_parada') badgeColor = "bg-tertiary-container/30 text-tertiary";
-                if (u.estado === 'en_espera') badgeColor = "bg-surface-container-highest text-on-surface-variant";
+                let badgeColor = "bg-brand-cyan/15 text-brand-cyan border-brand-cyan/30";
+                if (u.estado === 'en_parada') badgeColor = "bg-brand-emerald/15 text-brand-emerald border-brand-emerald/30";
+                if (u.estado === 'en_espera') badgeColor = "bg-slate-800 text-slate-400 border-slate-700";
 
                 const paxItems = (u.pasajeros || []).slice(0, 3).map(p => `
-                    <div class="flex items-center justify-between text-on-surface font-label-sm text-label-sm">
-                        <span class="font-medium text-primary">${p.nombre}</span>
-                        <span class="font-mono text-on-surface-variant">${p.origen} → ${p.destino}</span>
+                    <div class="flex items-center justify-between text-xs font-mono">
+                        <span class="text-slate-200 font-medium">${p.nombre}</span>
+                        <span class="text-brand-cyan">${p.origen} → ${p.destino}</span>
                     </div>
-                `).join('') || '<span class="text-on-surface-variant/70 italic text-[11px]">Sin pasajeros a bordo (disponible)</span>';
+                `).join('') || '<span class="text-slate-500 italic text-[11px]">Sin pasajeros a bordo (disponible para despacho)</span>';
 
                 return `
-                    <div class="bg-surface-container-low rounded-xl p-space-md shadow-[0_4px_16px_rgba(0,0,0,0.35)] flex flex-col justify-between gap-space-md hover:bg-surface-container transition-all">
+                    <div class="bg-dark-900/90 rounded-2xl p-5 border border-dark-800 hover:border-dark-700 transition-all flex flex-col justify-between gap-4 glow-card">
                         <div class="flex items-start justify-between">
-                            <div>
-                                <div class="flex items-center gap-space-xs">
-                                    <span class="font-headline-md text-headline-md text-on-surface font-semibold">${u.nombre}</span>
-                                    <span class="px-1.5 py-0.5 rounded bg-surface-container-high text-primary font-label-sm text-label-sm font-mono">&lt;${u.id}&gt;</span>
+                            <div class="flex flex-col">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-sm font-bold text-white">${u.nombre}</span>
+                                    <span class="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-dark-950 text-brand-cyan border border-dark-800">&lt;${u.id}&gt;</span>
                                 </div>
-                                <span class="font-body-sm text-body-sm text-on-surface-variant">Ruta: <strong>${u.ruta_id}</strong> · Parada: <strong class="text-primary">${paradaNombre}</strong></span>
+                                <span class="text-xs text-slate-400 mt-0.5">Parada: <strong class="text-brand-cyan font-semibold">${paradaNombre}</strong></span>
                             </div>
-                            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full ${badgeColor} font-label-sm text-label-sm font-semibold">
-                                <span class="h-1.5 w-1.5 rounded-full bg-current"></span>${u.estado}
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-bold font-mono border ${badgeColor}">
+                                ${u.estado}
                             </span>
                         </div>
 
                         <div>
-                            <div class="flex justify-between font-label-sm text-label-sm mb-1">
-                                <span class="text-on-surface-variant">Aforo: ${count} / ${max} PAX</span>
-                                <span class="text-primary font-bold">${pct}%</span>
+                            <div class="flex justify-between text-xs font-mono mb-1.5">
+                                <span class="text-slate-400">Aforo: <strong class="text-white">${count}</strong> / ${max} PAX</span>
+                                <span class="text-brand-cyan font-bold">${pct}%</span>
                             </div>
-                            <div class="w-full bg-surface-container-highest rounded-full h-1.5 overflow-hidden">
-                                <div class="bg-primary h-full rounded-full transition-all duration-300" style="width: ${pct}%;"></div>
+                            <div class="w-full bg-dark-950 rounded-full h-2 overflow-hidden border border-dark-800">
+                                <div class="bg-gradient-to-r from-brand-cyan to-brand-indigo h-full rounded-full transition-all duration-300" style="width: ${pct}%;"></div>
                             </div>
                         </div>
 
-                        <div class="bg-surface-container-lowest/70 rounded-lg p-space-sm flex flex-col gap-1 text-on-surface-variant font-label-sm text-label-sm">
+                        <div class="bg-dark-950 rounded-xl p-3 border border-dark-800/80 flex flex-col gap-1.5">
                             ${paxItems}
                         </div>
 
-                        <div class="flex items-center justify-between pt-space-xs gap-space-sm">
-                            <button class="flex-1 py-1.5 px-space-sm rounded bg-surface-container-high hover:bg-surface-bright text-on-surface font-label-sm text-label-sm font-semibold flex items-center justify-center gap-1 transition-colors" onclick="advanceUnit('${u.id}')">
-                                <span class="material-symbols-outlined text-[14px] text-primary">arrow_forward</span> Avanzar Parada
+                        <div class="flex items-center gap-2 pt-1">
+                            <button class="flex-1 py-2 px-3 rounded-xl bg-dark-800 hover:bg-dark-700 text-white font-semibold text-xs flex items-center justify-center gap-1.5 border border-dark-700 transition-all active:scale-95" onclick="advanceUnit('${u.id}')">
+                                <span class="material-symbols-outlined text-[16px] text-brand-cyan">fast_forward</span>
+                                <span>Avanzar Parada</span>
                             </button>
-                            <button class="py-1.5 px-space-sm rounded bg-error-container/20 hover:bg-error-container/40 text-error font-label-sm text-label-sm font-semibold flex items-center gap-1 transition-colors" onclick="simulateCrash('${u.id}')" title="Forzar fallo supervisor OTP ('let it crash')">
-                                <span class="material-symbols-outlined text-[14px]">warning</span> Crash (OTP)
+                            <button class="py-2 px-3 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 font-semibold text-xs flex items-center gap-1.5 border border-rose-500/30 transition-all active:scale-95" onclick="simulateCrash('${u.id}')" title="Inyectar fallo forzado en BEAM ('let it crash')">
+                                <span class="material-symbols-outlined text-[16px]">warning</span>
+                                <span>Crash (OTP)</span>
                             </button>
                         </div>
                     </div>
@@ -804,17 +773,17 @@
                     logLineasVistas.add(hash);
                     const d = new Date(ev.timestamp * 1000);
                     const timeStr = d.toLocaleTimeString('es-MX', { hour12: false });
-                    let tagColor = 'text-primary';
-                    if (ev.tipo === 'alerta') tagColor = 'text-error';
-                    if (ev.tipo === 'movimiento') tagColor = 'text-secondary';
-                    if (ev.tipo === 'abordaje') tagColor = 'text-tertiary';
+                    let tagColor = 'text-brand-cyan';
+                    if (ev.tipo === 'alerta') tagColor = 'text-rose-400 font-bold';
+                    if (ev.tipo === 'movimiento') tagColor = 'text-slate-300';
+                    if (ev.tipo === 'abordaje') tagColor = 'text-brand-emerald';
 
                     const row = document.createElement('div');
                     row.className = 'flex gap-2';
                     row.innerHTML = `
-                        <span class="text-on-surface-variant">[${timeStr}]</span>
+                        <span class="text-slate-500">[${timeStr}]</span>
                         <span class="${tagColor}">[${ev.tipo.toUpperCase()}]</span>
-                        <span class="text-on-surface">${ev.mensaje}</span>
+                        <span class="text-slate-300">${ev.mensaje}</span>
                     `;
                     feed.appendChild(row);
                     feed.scrollTop = feed.scrollHeight;
@@ -822,7 +791,6 @@
             });
         }
 
-        // Operaciones API
         async function advanceUnit(unitId) {
             try {
                 await fetch(`${API_BASE}/api/avanzar`, {
@@ -837,7 +805,7 @@
         }
 
         async function simulateCrash(unitId) {
-            showToast("Erlang Supervisor: Falla Crítica Inyectada", `Inyectando señal kill a <${unitId}>. El supervisor one_for_one actuará.`);
+            showToast("Supervisor OTP: Falla Inyectada", `Se envió señal de terminación a <${unitId}>. Supervisión one_for_one en progreso.`);
             try {
                 await fetch(`${API_BASE}/api/crash`, {
                     method: 'POST',
@@ -845,7 +813,7 @@
                     body: JSON.stringify({ unidad_id: unitId })
                 });
                 setTimeout(() => {
-                    showToast("Erlang Supervisor: Proceso Recuperado", `El supervisor OTP reinició <${unitId}> automáticamente en <150ms. Estado restaurado.`);
+                    showToast("Supervisor OTP: Unidad Reiniciada", `El supervisor reinició <${unitId}> automáticamente en milisegundos.`);
                     syncErlangState();
                 }, 300);
             } catch (err) {
@@ -866,7 +834,6 @@
             }
         });
 
-        // Formulario de despacho
         document.getElementById('passenger-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const nombre = document.getElementById('pax-name').value.trim();
@@ -874,12 +841,12 @@
             const destino = document.getElementById('pax-destination').value;
 
             if (origen === destino) {
-                alert("Origen y destino no pueden ser iguales");
+                alert("Origen y destino deben ser diferentes");
                 return;
             }
 
             const btn = document.getElementById('btn-submit-pax');
-            btn.innerHTML = `<span class="material-symbols-outlined text-[18px] animate-spin">refresh</span> <span>Despachando en BEAM...</span>`;
+            btn.innerHTML = `<span class="material-symbols-outlined text-[18px] animate-spin">refresh</span> <span>Despachando...</span>`;
 
             try {
                 const res = await fetch(`${API_BASE}/api/solicitar`, {
@@ -892,13 +859,13 @@
                 box.style.display = 'flex';
 
                 if (res.ok && data.exito) {
-                    document.getElementById('res-status-title').textContent = "¡Unidad Óptima Asignada!";
-                    document.getElementById('res-status-title').className = "font-label-md text-label-md text-tertiary font-bold";
+                    document.getElementById('res-status-title').innerHTML = `<span class="material-symbols-outlined text-[16px]">verified</span> ¡Unidad Asignada!`;
+                    document.getElementById('res-status-title').className = "text-xs font-bold text-brand-emerald flex items-center gap-1.5";
                     document.getElementById('res-ticket-id').textContent = `Ticket #${data.pasajero_id}`;
-                    document.getElementById('res-desc').innerHTML = `Se despachó a <strong class="text-primary font-semibold">${nombre}</strong> en <strong class="text-tertiary font-semibold">${data.unidad_asignada.toUpperCase()}</strong>. (${data.distancia_km} km / est. ${data.tiempo_estimado_min} min).`;
+                    document.getElementById('res-desc').innerHTML = `Se despachó a <strong class="text-white font-semibold">${nombre}</strong> en <strong class="text-brand-cyan font-semibold">${data.unidad_asignada.toUpperCase()}</strong>. (${data.distancia_km} km / est. ${data.tiempo_estimado_min} min).`;
                 } else {
-                    document.getElementById('res-status-title').textContent = "Solicitud Rechazada";
-                    document.getElementById('res-status-title').className = "font-label-md text-label-md text-error font-bold";
+                    document.getElementById('res-status-title').innerHTML = `<span class="material-symbols-outlined text-[16px]">error</span> Solicitud Rechazada`;
+                    document.getElementById('res-status-title').className = "text-xs font-bold text-rose-400 flex items-center gap-1.5";
                     document.getElementById('res-ticket-id').textContent = "Sin aforo";
                     document.getElementById('res-desc').textContent = data.error || "No hay unidades disponibles con ruta y cupo.";
                 }
@@ -906,11 +873,10 @@
             } catch (err) {
                 console.error(err);
             } finally {
-                btn.innerHTML = `<span class="material-symbols-outlined text-[18px]">send</span> <span>Asignar Pasajero al Sistema OTP</span>`;
+                btn.innerHTML = `<span class="material-symbols-outlined text-[18px]">send</span> <span>Asignar Unidad Óptima</span>`;
             }
         });
 
-        // Pasajero aleatorio
         document.getElementById('btn-random-pax').addEventListener('click', () => {
             const sampleNames = ['Mateo Nava', 'Ximena Castro', 'Rodrigo Mendoza', 'Fernanda Soto', 'Esteban Parra', 'Valeria Gómez', 'Carlos Rivera'];
             const keys = ['otay', 'central_camionera', 'zona_rio', 'centro', 'el_florido', 'playas'];
@@ -924,7 +890,6 @@
             document.getElementById('passenger-form').dispatchEvent(new Event('submit'));
         });
 
-        // Auto-simulación
         document.getElementById('btn-auto-sim').addEventListener('click', () => {
             const icon = document.getElementById('auto-sim-icon');
             const label = document.getElementById('label-auto-sim');
@@ -934,7 +899,8 @@
             if (autoSimActive) {
                 icon.classList.add('animate-spin');
                 label.textContent = "Pausar Auto-Sim";
-                btn.classList.add('bg-primary', 'text-on-primary');
+                btn.classList.add('bg-brand-cyan', 'text-dark-950');
+                btn.classList.remove('bg-dark-800', 'text-slate-200');
                 simTimer = setInterval(() => {
                     if (Math.random() > 0.45) {
                         document.getElementById('btn-advance-fleet').click();
@@ -945,7 +911,8 @@
             } else {
                 icon.classList.remove('animate-spin');
                 label.textContent = "Auto-Simulación";
-                btn.classList.remove('bg-primary', 'text-on-primary');
+                btn.classList.remove('bg-brand-cyan', 'text-dark-950');
+                btn.classList.add('bg-dark-800', 'text-slate-200');
                 clearInterval(simTimer);
             }
         });

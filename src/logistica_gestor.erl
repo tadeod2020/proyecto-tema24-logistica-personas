@@ -91,7 +91,7 @@ init([]) ->
         contador_pasajeros = 1000,
         total_transportados = 0,
         hora_inicio = Now,
-        bitacora = [{Now, sistema, <<"Gestor logístico de personas iniciado exitosamente">>}]
+        bitacora = [{Now, sistema, <<"Gestor logistico de personas iniciado exitosamente">>}]
     },
     {ok, EstadoInicial}.
 
@@ -171,8 +171,8 @@ handle_call({avanzar_unidad, UnidadId}, _From, #state{
                     CantDesembarcados = length(Desembarcados),
                     NuevoTotal = TotalTransportados + CantDesembarcados,
                     ParadaNueva = lists:nth(UnidadActualizada#unidad.parada_actual_idx, UnidadActualizada#unidad.paradas),
-                    Msg = iolist_to_binary(io_lib:format(
-                        "~p arribó a ~p. Desembarcaron ~p pasajeros.",
+                    Msg = unicode:characters_to_binary(io_lib:format(
+                        "~p llego a ~p. Desembarcaron ~p pasajeros.",
                         [UnidadId, ParadaNueva, CantDesembarcados]
                     )),
                     NuevaBitacora = [{Now, movimiento, Msg} | lists:sublist(Bitacora, 40)],
@@ -208,7 +208,7 @@ handle_call({provocar_crash, UnidadId}, _From, #state{bitacora = Bitacora} = Sta
     case whereis(UnidadId) of
         Pid when is_pid(Pid) ->
             Msg = iolist_to_binary(io_lib:format(
-                "Inyectando kill a ~p (PID ~p). El supervisor one_for_one actuará.",
+                "Inyectando kill a ~p (PID ~p). El supervisor one_for_one entrara en accion.",
                 [UnidadId, Pid]
             )),
             exit(Pid, kill),
